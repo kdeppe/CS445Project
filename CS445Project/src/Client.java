@@ -7,7 +7,16 @@
  *
  * @author kristen
  */
+
+import java.util.*;
+
 public class Client 
 {
-
+    String name;
+    String email;
+    String phone;
+    double totalSpent;
+    ArrayList<Booking> bookings;
+    
+    
 }
