@@ -12,22 +12,37 @@ import java.util.*;
 public class TourManager 
 {
     public static void main(String [] args) {
-    
+        ArrayList<Tour> TourList;
+        ArrayList<Client> ClientList;
     }
     
-    void viewTours() {
+    static Booking addBooking(Tour t, Client c) {
+        
+        return null;
+    }
+    
+    static void cancelBooking(Tour t, Client c) {
         
     }
     
-    void changeBooking() {
+    static void viewTours() {
         
     }
     
-    void displayPastBookings(GregorianCalendar start, GregorianCalendar end) {
+    static void changeBooking(Booking b, Tour t) {
         
     }
     
-    void displayRevenue(GregorianCalendar start, GregorianCalendar end) {
+    static void displayPastBookings(GregorianCalendar start, GregorianCalendar end) {
         
+    }
+    
+    static void displayRevenue(GregorianCalendar start, GregorianCalendar end) {
+        
+    }
+    
+    static Client searchByEmail(String email) {
+        
+        return null;
     }
 }
