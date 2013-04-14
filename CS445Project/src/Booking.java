@@ -35,4 +35,12 @@ public class Booking
     void setClient(Client c) {
         client = c;
     }
+    
+    //Actions
+    boolean isEqual(Booking b) {
+        if (client.equals(b.getClient()) && tour.equals(b.getTour())) {
+            return true;
+        }
+        return false;
+    }
 }

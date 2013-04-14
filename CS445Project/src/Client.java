@@ -66,7 +66,29 @@ public class Client
         
     }
     
-    void cancelBooking(Booking b) {
+    void cancelBooking(Tour t) {
         
+    }
+    
+    void listBookings() {
+        for (int i = bookings.size()-1; i > 0; i--) {
+            //Print booking information
+        }
+    }
+    
+    boolean isEqual(Client c) {
+        if (name.equals(c.name) && email.equals(c.email) && phone.equals(c.phone)) {
+            return true;
+        }
+        return false;
+    }
+    
+    String printClientShort() {
+        String out = "Name: " + name + "\nEmail: " + email;
+        return out;
+    }
+    
+    String printClientFull() {
+        String out = "Name: " + name + "\nEmail: " + email + "\nPhone: " + phone + "\nTotal Spent: " + totalSpent;
     }
 }

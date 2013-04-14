@@ -9,6 +9,7 @@
  */
 
 import java.util.*;
+import java.text.*;
 
 public class Tour 
 {
@@ -69,11 +70,7 @@ public class Tour
         capacity = cap;
     }
     
-    //Actions
-    void cancelTour() {
-        
-    }
-    
+    //Actions    
     void setPrice(int price) {
         
     }
@@ -82,11 +79,20 @@ public class Tour
         
     }
     
-    void cancelBooking(Booking b) {
+    void cancelBooking(Client c) {
         
     }
     
-    void listEmails() {
-        
+    public String printTour() {
+        SimpleDateFormat sdf = new SimpleDateFormat("mm/dd/yyyy");
+        String out = "Tour date: "+ sdf.format(start.getTime()) + "\nTimes: " + start.get(GregorianCalendar.HOUR) + ":" + start.get(GregorianCalendar.MINUTE) +"-" +end.get(GregorianCalendar.HOUR) + ":" + end.get(GregorianCalendar.MINUTE) + "\nCapacity: " + capacity + "\nPrice: " + String.format("%.2f", price);
+        return out;
+    }
+    
+    boolean isOverlap(Tour t) {
+        if ((start.getTimeInMillis() > t.getStart().getTimeInMillis() && start.getTimeInMillis() < t.getEnd().getTimeInMillis()) || (end.getTimeInMillis() > t.getStart().getTimeInMillis() && end.getTimeInMillis() < t.getEnd().getTimeInMillis())) {
+            return true;
+        }
+        return false;
     }
 }
