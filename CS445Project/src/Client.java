@@ -63,16 +63,22 @@ public class Client
     
     //Actions
     void makeBooking(Booking b) {
-        
+        bookings.add(b);
     }
     
     void cancelBooking(Tour t) {
-        
+        int i;
+        for (i=0; i<bookings.size(); i++) {
+            if (bookings.get(i).getTour().equals(t) ) {
+                bookings.remove(i);
+            }
+        }
     }
     
     void listBookings() {
         for (int i = bookings.size()-1; i > 0; i--) {
             //Print booking information
+            System.out.println(bookings.get(i).getTour().printTour());
         }
     }
     
@@ -90,5 +96,6 @@ public class Client
     
     String printClientFull() {
         String out = "Name: " + name + "\nEmail: " + email + "\nPhone: " + phone + "\nTotal Spent: " + totalSpent;
+        return out;
     }
 }

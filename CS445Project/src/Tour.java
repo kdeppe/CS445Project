@@ -71,16 +71,21 @@ public class Tour
     }
     
     //Actions    
-    void setPrice(int price) {
-        
+    void setPrice(int p) {
+        price = p;
     }
     
     void makeBooking(Booking b) {
-        
+        bookings.add(b);
     }
     
     void cancelBooking(Client c) {
-        
+        int i;
+        for (i=0; i<bookings.size(); i++) {
+            if (bookings.get(i).getClient().equals(c) ) {
+                bookings.remove(i);
+            }
+        }
     }
     
     public String printTour() {

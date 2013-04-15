@@ -58,20 +58,28 @@ public class TourManager
             Booking newBooking = new Booking(t, c);
             boolean exists = false;
             int i;
-            for (i=0; i<BookingList.size(); i++) {
-                if (BookingList.get(i).isEqual(newBooking)) {
-                    exists = true;
-                    break;
+            if (BookingList.size() > 0) {
+                for (i=0; i<BookingList.size(); i++) {
+                    if (BookingList.get(i).isEqual(newBooking)) {
+                        exists = true;
+                        break;
+                    }
                 }
-            }
-            if (!exists) {
+                if (exists) {
+                    System.out.println("Booking error: this client has already booked this tour.");
+                    return BookingList.get(i);
+                } else {
+                    t.makeBooking(newBooking);
+                    c.makeBooking(newBooking);
+                    BookingList.add(newBooking);
+                    return newBooking;
+                }
+            } else {
                 t.makeBooking(newBooking);
                 c.makeBooking(newBooking);
                 BookingList.add(newBooking);
                 return newBooking;
-            }
-            System.out.println("Booking error: this client has already booked this tour.");
-            return BookingList.get(i);
+            } 
         } 
         System.out.println("Booking error: this tour is already full.");          
         return null;
