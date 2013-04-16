@@ -16,7 +16,9 @@ public class TourManager
     static ArrayList<Booking> BookingList = new ArrayList<Booking>(0);
     
     public static void main(String [] args) {        
- 
+        // Debugging code, overwrite with actual implementation
+        
+        // End debugging code
     }
     
     static void addTour(double p, GregorianCalendar s, GregorianCalendar e, int cap) {
@@ -41,16 +43,18 @@ public class TourManager
         int i;
         boolean exists = false;
         for (i=0; i<ClientList.size(); i++) {
-            if (ClientList.get(i).isEqual(newClient)) {
+            if (ClientList.get(i).getEmail().equals(newClient.getEmail())) {
                 exists = true;
                 break;
             }
         }
         if (exists) {
-            System.out.println("Client already exists");
+            System.out.println("Client email already exists, using existing record.");
             return ClientList.get(i);
+        } else {
+            ClientList.add(newClient);
+            return ClientList.get(ClientList.size()-1);
         }
-        return newClient;
     }
     
     static Booking addBooking(Tour t, Client c) {

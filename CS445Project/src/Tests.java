@@ -135,7 +135,7 @@ public class Tests
         end = new GregorianCalendar(2013, 5, 15, 12, 0);
         Tour testT = new Tour(85.0, start, end, 10);
         
-        Client testC = new Client("Bob Smith", "bsmith@gmail.com", "312-555-1234");
+        Client testC = TourManager.addClient("Bob Smith", "bsmith@gmail.com", "312-555-1234");
         Booking testB = TourManager.addBooking(testT, testC);
         
         Client searchC = TourManager.searchByEmail("bsmith@gmail.com");
