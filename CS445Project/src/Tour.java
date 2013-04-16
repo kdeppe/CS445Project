@@ -13,6 +13,8 @@ import java.text.*;
 
 public class Tour 
 {
+    String name;
+    String description;
     double price;
     GregorianCalendar start;
     GregorianCalendar end;
@@ -20,8 +22,10 @@ public class Tour
     ArrayList<Booking> bookings;
     
     //Constructor
-    public Tour(double p, GregorianCalendar st, GregorianCalendar e, int cap)
+    public Tour(String n, String d, double p, GregorianCalendar st, GregorianCalendar e, int cap)
     {
+        name = n;
+        description = d;
         price = p;
         start = st;
         end = e;
@@ -52,7 +56,23 @@ public class Tour
     int getRemaining() {
         return capacity-bookings.size();
     }
+    
+    String getName() {
+        return name;
+    }
+    
+    String getDescription() {
+        return description;
+    }
     //Mutators
+    
+    void setName(String n) {
+        name = n;
+    }
+    
+    void setDescription(String d) {
+        description = d;
+    }
     
     void setPrice(double p) {
         price = p;
@@ -90,7 +110,7 @@ public class Tour
     
     public String printTour() {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-        String out = "Tour date: "+ sdf.format(start.getTime()) + "\nTimes: " + start.get(GregorianCalendar.HOUR) + ":" + start.get(GregorianCalendar.MINUTE) +"-" +end.get(GregorianCalendar.HOUR) + ":" + end.get(GregorianCalendar.MINUTE) + "\nCapacity: " + capacity + "\nPrice: " + String.format("%.2f", price);
+        String out = "Tour Name: " + name + "\nDescription: " + description + "\nDate: "+ sdf.format(start.getTime()) + "\nTimes: " + start.get(GregorianCalendar.HOUR) + ":" + start.get(GregorianCalendar.MINUTE) +"-" +end.get(GregorianCalendar.HOUR) + ":" + end.get(GregorianCalendar.MINUTE) + "\nCapacity: " + capacity + "\nPrice: " + String.format("%.2f", price) + "\n";
         return out;
     }
     

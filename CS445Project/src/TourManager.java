@@ -8,6 +8,8 @@
  * @author kristen
  */
 import java.util.*;
+import javax.swing.text.*;
+import javax.swing.*;
 
 public class TourManager 
 {
@@ -15,14 +17,17 @@ public class TourManager
     static ArrayList<Client> ClientList = new ArrayList<Client>(0);
     static ArrayList<Booking> BookingList = new ArrayList<Booking>(0);
     
+    static Client CurrentClient;
+    static Tour CurrentTour;
+    
     public static void main(String [] args) {        
         // Debugging code, overwrite with actual implementation
         
         // End debugging code
     }
     
-    static void addTour(double p, GregorianCalendar s, GregorianCalendar e, int cap) {
-        Tour newTour = new Tour(p, s, e, cap);
+    static void addTour(String n, String d, double p, GregorianCalendar s, GregorianCalendar e, int cap) {
+        Tour newTour = new Tour(n, d, p, s, e, cap);
         int i;
         boolean overlaps = false;
         for (i=0; i<TourList.size(); i++) {
@@ -141,7 +146,7 @@ public class TourManager
     
     static Client searchByEmail(String email) {
         for (int i=0; i<ClientList.size(); i++) {
-            if (ClientList.get(i).getEmail().equals(email)) {
+            if (ClientList.get(i).getEmail().equalsIgnoreCase(email)) {
                 return ClientList.get(i);
             }
         }
@@ -157,6 +162,39 @@ public class TourManager
         }
         for (i=0; i<BookingList.size(); i++) {
             
+        }
+    }
+    
+    static void printAvailableTours(JTextArea t) {
+        t.setText("");
+        int i;
+        GregorianCalendar present = new GregorianCalendar();
+        for (i=0; i<TourList.size(); i++) {
+            if (TourList.get(i).getStart().after(present) && TourList.get(i).getRemaining() > 0) {
+                t.append("Tour #" + (i+1) + "\n");
+                t.append(TourList.get(i).printTour());
+            }
+        }
+    }
+    
+    static void printFutureTours(JTextArea t) {
+        t.setText("");
+        int i;
+        GregorianCalendar present = new GregorianCalendar();
+        for (i=0; i<TourList.size(); i++) {
+            if (TourList.get(i).getStart().after(present)) {
+                t.append("Tour #" + (i+1));
+                t.append(TourList.get(i).printTour());
+            }
+        }
+    }
+    
+    static void printAllTours(JTextArea t) {
+        t.setText("");
+        int i;
+        for (i = 0; i < TourList.size(); i++) {
+            t.append("Tour #" + (i+1));
+            t.append(TourList.get(i).printTour());
         }
     }
 }

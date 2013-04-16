@@ -96,12 +96,12 @@ public class Client
     }
     
     String printClientShort() {
-        String out = "Name: " + name + "\nEmail: " + email;
+        String out = "Name: " + name + "\nEmail: " + email + "\n";
         return out;
     }
     
     String printClientFull() {
-        String out = "Name: " + name + "\nEmail: " + email + "\nPhone: " + phone + "\nTotal Spent: " + totalSpent;
+        String out = "Name: " + name + "\nEmail: " + email + "\nPhone: " + phone + "\nTotal Spent: " + totalSpent + "\n";
         return out;
     }
 }
