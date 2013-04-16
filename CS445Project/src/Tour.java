@@ -110,7 +110,7 @@ public class Tour
     
     public String printTour() {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-        String out = "Tour Name: " + name + "\nDescription: " + description + "\nDate: "+ sdf.format(start.getTime()) + "\nTimes: " + start.get(GregorianCalendar.HOUR) + ":" + start.get(GregorianCalendar.MINUTE) +"-" +end.get(GregorianCalendar.HOUR) + ":" + end.get(GregorianCalendar.MINUTE) + "\nCapacity: " + capacity + "\nPrice: " + String.format("%.2f", price) + "\n";
+        String out = "Tour Name: " + name + "\nDescription: " + description + "\nDate: "+ sdf.format(start.getTime()) + "\nTimes: " + start.get(GregorianCalendar.HOUR) + ":" + start.get(GregorianCalendar.MINUTE) +"-" +end.get(GregorianCalendar.HOUR) + ":" + end.get(GregorianCalendar.MINUTE) + "\nCapacity: " + capacity + "\nPrice: " + String.format("$%.2f", price) + "\n";
         return out;
     }
     

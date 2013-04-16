@@ -21,9 +21,7 @@ public class TourManager
     static Tour CurrentTour;
     
     public static void main(String [] args) {        
-        // Debugging code, overwrite with actual implementation
         
-        // End debugging code
     }
     
     static void addTour(String n, String d, double p, GregorianCalendar s, GregorianCalendar e, int cap) {
@@ -103,7 +101,7 @@ public class TourManager
         }
         t.cancelBooking(c);
         c.cancelBooking(t);
-        System.out.println("Refund amount: "+String.format("%.2f", t.getPrice()));
+        System.out.println("Refund amount: "+String.format("$%.2f", t.getPrice()));
     }
     
     static void viewTours() {
@@ -120,28 +118,29 @@ public class TourManager
         b.getClient().addTotalSpent(t.getPrice() - p);
 
         if (t.getPrice() >= p) {
-            System.out.println("Customer owes " + String.format("%.2f", t.getPrice() - p));
+            System.out.println("Customer owes " + String.format("$%.2f", t.getPrice() - p));
         } else if (t.getPrice() < p) {
-            System.out.println("Refund amount: " + String.format("%.2f", p - t.getPrice()));
+            System.out.println("Refund amount: " + String.format("$%.2f", p - t.getPrice()));
         }
     }
     
-    static void displayPastBookings(GregorianCalendar start, GregorianCalendar end) {
+    static void displayPastBookings(GregorianCalendar start, GregorianCalendar end, JTextArea t) {
         for (int i = 0; i < BookingList.size(); i++) {
             if (BookingList.get(i).getTour().getStart().getTimeInMillis() > start.getTimeInMillis() && BookingList.get(i).getTour().getStart().getTimeInMillis() < end.getTimeInMillis()) {
-                System.out.println(BookingList.get(i).getClient().printClientShort());
-                System.out.println(BookingList.get(i).getTour().printTour());
-                System.out.println();
+                t.append(BookingList.get(i).getClient().printClientShort());
+                t.append(BookingList.get(i).getTour().printTour());
+                t.append("\n");
             }
         }
     }
     
-    static void displayRevenue(GregorianCalendar start, GregorianCalendar end) {
+    static String displayRevenue(GregorianCalendar start, GregorianCalendar end) {
         double total = 0;
         for (int i = 0; i < TourList.size(); i++) {
             total = total + TourList.get(i).getPrice()*TourList.get(i).getBookings().size();
         }
-        System.out.println("Total revenue over selected time period: " + total);
+        String out = String.format("$%.2f", total);
+        return out;
     }
     
     static Client searchByEmail(String email) {

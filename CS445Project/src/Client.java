@@ -101,7 +101,7 @@ public class Client
     }
     
     String printClientFull() {
-        String out = "Name: " + name + "\nEmail: " + email + "\nPhone: " + phone + "\nTotal Spent: " + totalSpent + "\n";
+        String out = "Name: " + name + "\nEmail: " + email + "\nPhone: " + phone + "\nTotal Spent: " + String.format("$%.2f", totalSpent) + "\n";
         return out;
     }
 }
