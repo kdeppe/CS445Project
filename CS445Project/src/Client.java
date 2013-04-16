@@ -64,6 +64,7 @@ public class Client
     //Actions
     void makeBooking(Booking b) {
         bookings.add(b);
+        totalSpent = totalSpent + b.getTour().getPrice();
     }
     
     void cancelBooking(Tour t) {
@@ -71,8 +72,13 @@ public class Client
         for (i=0; i<bookings.size(); i++) {
             if (bookings.get(i).getTour().equals(t) ) {
                 bookings.remove(i);
+                totalSpent = totalSpent - t.getPrice();
             }
         }
+    }
+    
+    void addTotalSpent(double i) {
+        totalSpent += i;
     }
     
     void listBookings() {

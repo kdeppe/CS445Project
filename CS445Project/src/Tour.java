@@ -89,7 +89,7 @@ public class Tour
     }
     
     public String printTour() {
-        SimpleDateFormat sdf = new SimpleDateFormat("mm/dd/yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
         String out = "Tour date: "+ sdf.format(start.getTime()) + "\nTimes: " + start.get(GregorianCalendar.HOUR) + ":" + start.get(GregorianCalendar.MINUTE) +"-" +end.get(GregorianCalendar.HOUR) + ":" + end.get(GregorianCalendar.MINUTE) + "\nCapacity: " + capacity + "\nPrice: " + String.format("%.2f", price);
         return out;
     }

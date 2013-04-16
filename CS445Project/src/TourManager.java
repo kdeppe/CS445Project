@@ -11,9 +11,9 @@ import java.util.*;
 
 public class TourManager 
 {
-    static ArrayList<Tour> TourList;
-    static ArrayList<Client> ClientList;
-    static ArrayList<Booking> BookingList;
+    static ArrayList<Tour> TourList = new ArrayList<Tour>(0);
+    static ArrayList<Client> ClientList = new ArrayList<Client>(0);
+    static ArrayList<Booking> BookingList = new ArrayList<Booking>(0);
     
     public static void main(String [] args) {        
  
@@ -108,12 +108,13 @@ public class TourManager
         b.getTour().cancelBooking(b.getClient());
         b.setTour(t);
         t.makeBooking(b);
-        if (t.getPrice() > p) {
+        b.getClient().addTotalSpent(t.getPrice() - p);
+
+        if (t.getPrice() >= p) {
             System.out.println("Customer owes " + String.format("%.2f", t.getPrice() - p));
-        } else {
+        } else if (t.getPrice() < p) {
             System.out.println("Refund amount: " + String.format("%.2f", p - t.getPrice()));
         }
-        
     }
     
     static void displayPastBookings(GregorianCalendar start, GregorianCalendar end) {
@@ -140,6 +141,7 @@ public class TourManager
                 return ClientList.get(i);
             }
         }
+        System.out.println("Email not found.");
         return null;
     }
 
