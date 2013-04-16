@@ -24,8 +24,8 @@ public class TourManager
         
     }
     
-    static void addTour(String n, String d, double p, GregorianCalendar s, GregorianCalendar e, int cap) {
-        Tour newTour = new Tour(n, d, p, s, e, cap);
+    static void addTour(String n, String d, String l, double p, GregorianCalendar s, GregorianCalendar e, int cap) {
+        Tour newTour = new Tour(n, d, l, p, s, e, cap);
         int i;
         boolean overlaps = false;
         for (i=0; i<TourList.size(); i++) {

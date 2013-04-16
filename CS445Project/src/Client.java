@@ -17,6 +17,7 @@ public class Client
     String phone;
     double totalSpent;
     ArrayList<Booking> bookings;
+    CreditCard card;
     
     //Constructor
     public Client(String n, String e, String p) {
@@ -25,6 +26,7 @@ public class Client
         phone = p;
         totalSpent = 0;
         bookings = new ArrayList<Booking>(0);
+        card = null;
     }
     
     //Accessors
@@ -48,7 +50,15 @@ public class Client
         return bookings;
     }
     
+    CreditCard getCard() {
+        return card;
+    }
+    
     //Mutators
+    void setCard(CreditCard c) {
+        card = c;
+    }
+    
     void setName(String n) {
         name = n;
     }
