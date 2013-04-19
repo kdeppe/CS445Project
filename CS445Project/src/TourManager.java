@@ -20,42 +20,50 @@ import javax.swing.*;
 
 public class TourManager 
 {
-    static ArrayList<ArrayList> lists = new ArrayList<ArrayList>(0);
     
-    static ArrayList<Tour> TourList = new ArrayList<Tour>(0);
-    static ArrayList<Client> ClientList = new ArrayList<Client>(0);
-    static ArrayList<Booking> BookingList = new ArrayList<Booking>(0);
+    static ArrayList<Tour> TourList;
+    static ArrayList<Client> ClientList;
+    static ArrayList<Booking> BookingList;
     
     static Client CurrentClient;
     static Tour CurrentTour;
     
     public static void main(String [] args) throws IOException, ClassNotFoundException {
-               
+        boolean contains = false;
         try {
             FileInputStream fis= new FileInputStream("lists.ser");
             BufferedInputStream bis= new BufferedInputStream(fis);
             ObjectInputStream ois= new ObjectInputStream(bis);
-            lists = (ArrayList)ois.readObject();
+            TourList = (ArrayList)ois.readObject();
+            ClientList = (ArrayList)ois.readObject();
+            BookingList = (ArrayList)ois.readObject();
+
             ois.close();
+            contains = true;
         } catch (FileNotFoundException fnfe) {
-            lists.add(TourList);
-            lists.add(ClientList);
-            lists.add(BookingList);
+            System.out.println("File Not Found Exception, initializing arrays");
+            TourList = new ArrayList<Tour>(0);
+            ClientList = new ArrayList<Client>(0);
+            BookingList = new ArrayList<Booking>(0);
 	} catch (ClassNotFoundException cnfe) {
-            lists.add(TourList);
-            lists.add(ClientList);
-            lists.add(BookingList);
+            System.out.println("Class Not Found Exception, initializing arrays");
+            TourList = new ArrayList<Tour>(0);
+            ClientList = new ArrayList<Client>(0);
+            BookingList = new ArrayList<Booking>(0);
         } catch (IOException ioe) {
-            lists.add(TourList);
-            lists.add(ClientList);
-            lists.add(BookingList);
+            System.out.println("IO Exception, initializing arrays");
+            TourList = new ArrayList<Tour>(0);
+            ClientList = new ArrayList<Client>(0);
+            BookingList = new ArrayList<Booking>(0);
         }
-        
+        if (!contains) {
+            TourList = new ArrayList<Tour>(0);
+            ClientList = new ArrayList<Client>(0);
+            BookingList = new ArrayList<Booking>(0);
+        }
         TourManagerGUI tmg = new TourManagerGUI();
         tmg.setVisible(true);
-        tmg.setDefaultCloseOperation(TourManagerGUI.EXIT_ON_CLOSE);
-            
-        
+        tmg.setDefaultCloseOperation(TourManagerGUI.EXIT_ON_CLOSE);        
     }
     
     static String addTour(String n, String d, String l, double p, GregorianCalendar s, GregorianCalendar e, int cap) {
@@ -222,7 +230,7 @@ public class TourManager
     static String displayPastBookings(GregorianCalendar start, GregorianCalendar end) {
         String out = "";
         for (int i = 0; i < BookingList.size(); i++) {
-            if (BookingList.get(i).getTour().getStart().getTimeInMillis() > start.getTimeInMillis() && BookingList.get(i).getTour().getStart().getTimeInMillis() < end.getTimeInMillis()) {
+            if (BookingList.get(i).getTour().getStart().after(start) && BookingList.get(i).getTour().getStart().before(end)) {
                 out = out + (BookingList.get(i).getClient().printClientShort());
                 out = out + (BookingList.get(i).getTour().printTour());
                 out = out + ("\n");

@@ -9,8 +9,9 @@
  */
 
 import java.util.*;
+import java.io.*;
 
-public class Client 
+public class Client implements Serializable
 {
     String name;
     String email;
@@ -111,7 +112,9 @@ public class Client
     }
     
     String printClientFull() {
-        String out = "Name: " + name + "\nEmail: " + email + "\nPhone: " + phone + "\nTotal Spent: " + String.format("$%.2f", totalSpent) + "\n";
+        String out = "Name: " + name + "\nEmail: " + email + "\nPhone: " + phone 
+                + "\nTotal Spent: " + String.format("$%.2f", totalSpent) + "\n" 
+                + card.printCard();
         return out;
     }
 }

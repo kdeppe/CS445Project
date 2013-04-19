@@ -7,7 +7,9 @@
  *
  * @author kristen
  */
-public class CreditCard 
+import java.io.*;
+
+public class CreditCard implements Serializable
 {
     long cardNumber;
     int cardCode;
@@ -61,5 +63,11 @@ public class CreditCard
     
     void setAddress(String a) {
         address = a;
+    }
+    
+    String printCard() {
+        String out = "\nCard number: "+cardNumber+"\nSecurity code: "+cardCode
+                +"\nExpiration: "+exp+"\nName on Card: "+NameOnCard+"Billing Address: "+address;
+        return out;
     }
 }

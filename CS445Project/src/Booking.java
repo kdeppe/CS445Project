@@ -7,7 +7,9 @@
  *
  * @author kristen
  */
-public class Booking 
+import java.io.*;
+
+public class Booking implements Serializable
 {
     Tour tour;
     Client client;

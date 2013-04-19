@@ -9,9 +9,10 @@
  */
 
 import java.util.*;
+import java.io.*;
 import java.text.*;
 
-public class Tour 
+public class Tour implements Serializable 
 {
     String name;
     String description;
