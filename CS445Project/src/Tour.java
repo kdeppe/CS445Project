@@ -121,7 +121,7 @@ public class Tour
     
     public String printTour() {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-        String out = "Tour Name: " + name + "\nLocation: " + location + "\nDescription: " + description + "\nDate: "+ sdf.format(start.getTime()) + "\nTimes: " + start.get(GregorianCalendar.HOUR) + ":" + start.get(GregorianCalendar.MINUTE) +"-" +end.get(GregorianCalendar.HOUR) + ":" + end.get(GregorianCalendar.MINUTE) + "\nCapacity: " + capacity + "\nPrice: " + String.format("$%.2f", price) + "\n";
+        String out = "Tour Name: " + name + "\nLocation: " + location + "\nDescription: " + description + "\nDate: "+ sdf.format(start.getTime()) + "\nTimes: " + start.get(GregorianCalendar.HOUR) + ":" + String.format("%02d",start.get(GregorianCalendar.MINUTE)) +"-" +end.get(GregorianCalendar.HOUR) + ":" + String.format("%02d", end.get(GregorianCalendar.MINUTE)) + "\nCapacity: " + capacity + "\nRemaining: " + this.getRemaining() + "\nPrice: " + String.format("$%.2f", price) + "\n";
         return out;
     }
     
@@ -129,6 +129,14 @@ public class Tour
         if ((start.getTimeInMillis() > t.getStart().getTimeInMillis() && start.getTimeInMillis() < t.getEnd().getTimeInMillis()) || (end.getTimeInMillis() > t.getStart().getTimeInMillis() && end.getTimeInMillis() < t.getEnd().getTimeInMillis())) {
             return true;
         }
+        return false;
+    }
+
+
+    boolean isEqual(Tour t) {
+        if (t.getStart() == start && t.getEnd() == end && t.getName().equals(name)) {
+            return true;
+        } 
         return false;
     }
 }

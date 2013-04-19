@@ -7,12 +7,21 @@
  *
  * @author kristen
  */
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.*;
-import javax.swing.text.*;
 import javax.swing.*;
 
 public class TourManager 
 {
+    static ArrayList<ArrayList> lists = new ArrayList<ArrayList>(3);
+    
     static ArrayList<Tour> TourList = new ArrayList<Tour>(0);
     static ArrayList<Client> ClientList = new ArrayList<Client>(0);
     static ArrayList<Booking> BookingList = new ArrayList<Booking>(0);
@@ -20,11 +29,28 @@ public class TourManager
     static Client CurrentClient;
     static Tour CurrentTour;
     
-    public static void main(String [] args) {        
+    public static void main(String [] args) throws IOException, ClassNotFoundException {        
+        try {
+            FileInputStream fis= new FileInputStream("lists.ser");
+            BufferedInputStream bis= new BufferedInputStream(fis);
+            ObjectInputStream ois= new ObjectInputStream(bis);
+            TourList = (ArrayList)ois.readObject();
+            ClientList = (ArrayList)ois.readObject();
+            BookingList = (ArrayList)ois.readObject();
+            ois.close();
+        } catch (FileNotFoundException fnfe) {
+	} catch (ClassNotFoundException cnfe) {
+        } catch (IOException ioe) {
+        }
+        
+        TourManagerGUI tmg = new TourManagerGUI();
+        tmg.setVisible(true);
+        tmg.setDefaultCloseOperation(TourManagerGUI.EXIT_ON_CLOSE);
+            
         
     }
     
-    static void addTour(String n, String d, String l, double p, GregorianCalendar s, GregorianCalendar e, int cap) {
+    static String addTour(String n, String d, String l, double p, GregorianCalendar s, GregorianCalendar e, int cap) {
         Tour newTour = new Tour(n, d, l, p, s, e, cap);
         int i;
         boolean overlaps = false;
@@ -35,10 +61,22 @@ public class TourManager
             }
         }
         if (overlaps) {
-            System.out.println("Error: dates overlap with existing tour.");
+            return ("Error: dates overlap with existing tour.");
         } else {
             TourList.add(newTour);
         }
+        try {
+            FileOutputStream fos = new FileOutputStream("lists.ser");
+            BufferedOutputStream bos= new BufferedOutputStream(fos);
+            ObjectOutputStream oos= new ObjectOutputStream(bos);
+
+            oos.writeObject(TourList);
+            oos.writeObject(ClientList);
+            oos.writeObject(BookingList);
+            oos.close();
+        } catch (IOException ioe) {
+        }
+        return "Tour added successfully.";
     }
     
     static Client addClient(String n, String e, String p) {
@@ -56,6 +94,17 @@ public class TourManager
             return ClientList.get(i);
         } else {
             ClientList.add(newClient);
+            try {
+                FileOutputStream fos = new FileOutputStream("lists.ser");
+                BufferedOutputStream bos= new BufferedOutputStream(fos);
+                ObjectOutputStream oos= new ObjectOutputStream(bos);
+
+                oos.writeObject(TourList);
+                oos.writeObject(ClientList);
+                oos.writeObject(BookingList);
+                oos.close();
+            } catch (IOException ioe) {
+            }
             return ClientList.get(ClientList.size()-1);
         }
     }
@@ -73,26 +122,46 @@ public class TourManager
                     }
                 }
                 if (exists) {
-                    System.out.println("Booking error: this client has already booked this tour.");
-                    return BookingList.get(i);
+                    return null;
                 } else {
                     t.makeBooking(newBooking);
                     c.makeBooking(newBooking);
                     BookingList.add(newBooking);
+                    try {
+                        FileOutputStream fos = new FileOutputStream("lists.ser");
+                        BufferedOutputStream bos= new BufferedOutputStream(fos);
+                        ObjectOutputStream oos= new ObjectOutputStream(bos);
+
+                        oos.writeObject(TourList);
+                        oos.writeObject(ClientList);
+                        oos.writeObject(BookingList);
+                        oos.close();
+                    } catch (IOException ioe) {
+                    }
                     return newBooking;
                 }
             } else {
                 t.makeBooking(newBooking);
                 c.makeBooking(newBooking);
                 BookingList.add(newBooking);
+                try {
+                    FileOutputStream fos = new FileOutputStream("lists.ser");
+                    BufferedOutputStream bos= new BufferedOutputStream(fos);
+                    ObjectOutputStream oos= new ObjectOutputStream(bos);
+
+                    oos.writeObject(TourList);
+                    oos.writeObject(ClientList);
+                    oos.writeObject(BookingList);
+                    oos.close();
+                } catch (IOException ioe) {
+                }
                 return newBooking;
             } 
-        } 
-        System.out.println("Booking error: this tour is already full.");          
+        }           
         return null;
     }
     
-    static void cancelBooking(Tour t, Client c) {
+    static String cancelBooking(Tour t, Client c) {
         Booking test = new Booking(t, c);
         for (int i=0; i<BookingList.size(); i++) {
             if (BookingList.get(i).isEqual(test)) {
@@ -101,16 +170,22 @@ public class TourManager
         }
         t.cancelBooking(c);
         c.cancelBooking(t);
-        System.out.println("Refund amount: "+String.format("$%.2f", t.getPrice()));
-    }
-    
-    static void viewTours() {
-        for (int i=0; i<TourList.size(); i++) {
-            TourList.get(i).printTour();
+        String out = ("Refund amount: "+String.format("$%.2f", t.getPrice()));
+        try {
+            FileOutputStream fos = new FileOutputStream("lists.ser");
+            BufferedOutputStream bos= new BufferedOutputStream(fos);
+            ObjectOutputStream oos= new ObjectOutputStream(bos);
+
+            oos.writeObject(TourList);
+            oos.writeObject(ClientList);
+            oos.writeObject(BookingList);
+            oos.close();
+        } catch (IOException ioe) {
         }
+        return out;
     }
     
-    static void changeBooking(Booking b, Tour t) {
+    static String changeBooking(Booking b, Tour t) {
         double p = b.getTour().getPrice();
         b.getTour().cancelBooking(b.getClient());
         b.setTour(t);
@@ -118,20 +193,34 @@ public class TourManager
         b.getClient().addTotalSpent(t.getPrice() - p);
 
         if (t.getPrice() >= p) {
-            System.out.println("Customer owes " + String.format("$%.2f", t.getPrice() - p));
+            return ("Customer owes " + String.format("$%.2f", t.getPrice() - p));
         } else if (t.getPrice() < p) {
-            System.out.println("Refund amount: " + String.format("$%.2f", p - t.getPrice()));
+            return ("Refund amount: " + String.format("$%.2f", p - t.getPrice()));
         }
+        try {
+            FileOutputStream fos = new FileOutputStream("lists.ser");
+            BufferedOutputStream bos= new BufferedOutputStream(fos);
+            ObjectOutputStream oos= new ObjectOutputStream(bos);
+
+            oos.writeObject(TourList);
+            oos.writeObject(ClientList);
+            oos.writeObject(BookingList);
+            oos.close();
+        } catch (IOException ioe) {
+        }
+        return "";
     }
     
-    static void displayPastBookings(GregorianCalendar start, GregorianCalendar end, JTextArea t) {
+    static String displayPastBookings(GregorianCalendar start, GregorianCalendar end) {
+        String out = "";
         for (int i = 0; i < BookingList.size(); i++) {
             if (BookingList.get(i).getTour().getStart().getTimeInMillis() > start.getTimeInMillis() && BookingList.get(i).getTour().getStart().getTimeInMillis() < end.getTimeInMillis()) {
-                t.append(BookingList.get(i).getClient().printClientShort());
-                t.append(BookingList.get(i).getTour().printTour());
-                t.append("\n");
+                out = out + (BookingList.get(i).getClient().printClientShort());
+                out = out + (BookingList.get(i).getTour().printTour());
+                out = out + ("\n");
             }
         }
+        return out;
     }
     
     static String displayRevenue(GregorianCalendar start, GregorianCalendar end) {
@@ -147,53 +236,75 @@ public class TourManager
         for (int i=0; i<ClientList.size(); i++) {
             if (ClientList.get(i).getEmail().equalsIgnoreCase(email)) {
                 return ClientList.get(i);
-            }
+            } 
         }
-        System.out.println("Email not found.");
         return null;
     }
 
-    static void cancelTour(Tour t) {
-        System.out.println("Email list: ");
+    static String cancelTour(Tour t) {
+        String out = "Email list: \n";
         int i;
         for (i=0; i<t.getBookings().size(); i++) {
-            System.out.println(t.getBookings().get(i).getClient().getEmail());
+            out = out + t.getBookings().get(i).getClient().getEmail() + "\n";
         }
         for (i=0; i<BookingList.size(); i++) {
-            
+            if (BookingList.get(i).getTour().isEqual(t)) {
+                out = out + BookingList.get(i).getClient().getName() + "\n";
+                out = out + cancelBooking(t, BookingList.get(i).getClient()) + "\n\n";
+            }
         }
+        for (i=0; i<TourList.size(); i++) {
+            if (TourList.get(i).equals(t)) {
+                TourList.remove(i);
+            }
+        }
+        try {
+            FileOutputStream fos = new FileOutputStream("lists.ser");
+            BufferedOutputStream bos= new BufferedOutputStream(fos);
+            ObjectOutputStream oos= new ObjectOutputStream(bos);
+
+            oos.writeObject(TourList);
+            oos.writeObject(ClientList);
+            oos.writeObject(BookingList);
+            oos.close();
+        } catch (IOException ioe) {
+        }
+        return out;
     }
     
-    static void printAvailableTours(JTextArea t) {
-        t.setText("");
+    static String printAvailableTours() {
+        String out = "";
         int i;
         GregorianCalendar present = new GregorianCalendar();
         for (i=0; i<TourList.size(); i++) {
             if (TourList.get(i).getStart().after(present) && TourList.get(i).getRemaining() > 0) {
-                t.append("Tour #" + (i+1) + "\n");
-                t.append(TourList.get(i).printTour());
+                out = out + ("Tour #" + (i+1) + "\n");
+                out = out + (TourList.get(i).printTour() + "\n");
             }
         }
+        return out;
     }
     
-    static void printFutureTours(JTextArea t) {
-        t.setText("");
+    static String printFutureTours() {
+        String out = "";
         int i;
         GregorianCalendar present = new GregorianCalendar();
         for (i=0; i<TourList.size(); i++) {
             if (TourList.get(i).getStart().after(present)) {
-                t.append("Tour #" + (i+1));
-                t.append(TourList.get(i).printTour());
+                out = out + ("Tour #" + (i+1) + "\n");
+                out = out + (TourList.get(i).printTour() + "\n");
             }
         }
+        return out;
     }
     
-    static void printAllTours(JTextArea t) {
-        t.setText("");
+    static String printAllTours() {
+        String out = "";
         int i;
         for (i = 0; i < TourList.size(); i++) {
-            t.append("Tour #" + (i+1));
-            t.append(TourList.get(i).printTour());
+            out = out + ("Tour #" + (i+1) + "\n");
+            out = out + (TourList.get(i).printTour() + "\n");
         }
+        return out;
     }
 }

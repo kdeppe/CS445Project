@@ -37,6 +37,17 @@ public class TourManagerGUI extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         BookingEmail = new javax.swing.JTextField();
         BookingButton = new javax.swing.JButton();
+        ListAvailable = new javax.swing.JButton();
+        ListFuture = new javax.swing.JButton();
+        ListAll = new javax.swing.JButton();
+        CancelBookingButton = new javax.swing.JButton();
+        CancelTourButton = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        BookOutputPane = new javax.swing.JTextArea();
+        AddClient = new javax.swing.JButton();
+        ChangeBookingButton = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
+        OldTourNumber = new javax.swing.JTextField();
         ScheduleTab = new javax.swing.JPanel();
         ScheduleDescription = new javax.swing.JTextField();
         ScheduleCapacity = new javax.swing.JTextField();
@@ -54,11 +65,16 @@ public class TourManagerGUI extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         ScheduleName = new javax.swing.JTextField();
         CreateTourButton = new javax.swing.JButton();
-        ScheduleCalendar = new com.toedter.calendar.JCalendar();
-        ScheduleCalendar1 = new com.toedter.calendar.JCalendar();
         jLabel11 = new javax.swing.JLabel();
-        RepeatUntil = new com.toedter.calendar.JCalendar();
         RepeatCheck = new javax.swing.JCheckBox();
+        jLabel14 = new javax.swing.JLabel();
+        ScheduleLocation = new javax.swing.JTextField();
+        ScheduleStart = new com.toedter.calendar.JCalendar();
+        ScheduleEnd = new com.toedter.calendar.JCalendar();
+        RepeatUntil = new com.toedter.calendar.JCalendar();
+        ScheduleClear = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        ScheduleOutput = new javax.swing.JTextArea();
         ClientLookupTab = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         EmailLookupField = new javax.swing.JTextField();
@@ -70,8 +86,8 @@ public class TourManagerGUI extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         ReportOutput = new javax.swing.JTextArea();
         ReportButton = new javax.swing.JButton();
-        ReportStart = new com.toedter.calendar.JCalendar();
         ReportEnd = new com.toedter.calendar.JCalendar();
+        ReportStart = new com.toedter.calendar.JCalendar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,6 +111,66 @@ public class TourManagerGUI extends javax.swing.JFrame {
         });
 
         BookingButton.setText("Make Booking");
+        BookingButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BookingButtonActionPerformed(evt);
+            }
+        });
+
+        ListAvailable.setText("List Available Tours");
+        ListAvailable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ListAvailableActionPerformed(evt);
+            }
+        });
+
+        ListFuture.setText("List Future Tours");
+        ListFuture.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ListFutureActionPerformed(evt);
+            }
+        });
+
+        ListAll.setText("List All Tours");
+        ListAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ListAllActionPerformed(evt);
+            }
+        });
+
+        CancelBookingButton.setText("Cancel Booking");
+        CancelBookingButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelBookingButtonActionPerformed(evt);
+            }
+        });
+
+        CancelTourButton.setText("Cancel Tour");
+        CancelTourButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelTourButtonActionPerformed(evt);
+            }
+        });
+
+        BookOutputPane.setColumns(20);
+        BookOutputPane.setRows(5);
+        jScrollPane4.setViewportView(BookOutputPane);
+
+        AddClient.setText("Add New Client");
+        AddClient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddClientActionPerformed(evt);
+            }
+        });
+
+        ChangeBookingButton.setText("Change Booking");
+        ChangeBookingButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChangeBookingButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel15.setText("Old tour number:");
 
         javax.swing.GroupLayout BookTabLayout = new javax.swing.GroupLayout(BookTab);
         BookTab.setLayout(BookTabLayout);
@@ -102,40 +178,80 @@ public class TourManagerGUI extends javax.swing.JFrame {
             BookTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BookTabLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17)
-                .addGroup(BookTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel13))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(BookTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(BookTabLayout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17))
+                    .addGroup(BookTabLayout.createSequentialGroup()
+                        .addComponent(ListAvailable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ListFuture, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ListAll, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addGroup(BookTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(BookTabLayout.createSequentialGroup()
+                        .addGroup(BookTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel13))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(BookTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(BookingEmail)
-                            .addComponent(TourNumber))
-                        .addGap(12, 12, 12))
+                            .addGroup(BookTabLayout.createSequentialGroup()
+                                .addGroup(BookTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(BookingEmail)
+                                    .addComponent(TourNumber))
+                                .addGap(12, 12, 12))
+                            .addGroup(BookTabLayout.createSequentialGroup()
+                                .addGroup(BookTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(ChangeBookingButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(AddClient, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(CancelTourButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(CancelBookingButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(BookTabLayout.createSequentialGroup()
+                                        .addComponent(jLabel15)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(OldTourNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE))
+                                    .addComponent(BookingButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(BookTabLayout.createSequentialGroup()
-                        .addComponent(BookingButton)
-                        .addContainerGap(136, Short.MAX_VALUE))))
+                        .addGap(109, 109, 109)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(24, Short.MAX_VALUE))))
         );
         BookTabLayout.setVerticalGroup(
             BookTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BookTabLayout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(BookTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TourNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12)
+                    .addComponent(ListAvailable)
+                    .addComponent(ListFuture)
+                    .addComponent(ListAll))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(BookTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(BookTabLayout.createSequentialGroup()
-                        .addGroup(BookTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(TourNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel12))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(BookTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(BookingEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel13))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(BookingButton)
-                        .addGap(0, 505, Short.MAX_VALUE))
-                    .addComponent(jScrollPane3))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(CancelBookingButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ChangeBookingButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(BookTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel15)
+                            .addComponent(OldTourNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(5, 5, 5)
+                        .addComponent(CancelTourButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(AddClient)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(298, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3)))
         );
 
         jTabbedPane1.addTab("Book", BookTab);
@@ -184,6 +300,19 @@ public class TourManagerGUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel14.setText("Location");
+
+        ScheduleClear.setText("Clear");
+        ScheduleClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ScheduleClearActionPerformed(evt);
+            }
+        });
+
+        ScheduleOutput.setColumns(20);
+        ScheduleOutput.setRows(5);
+        jScrollPane5.setViewportView(ScheduleOutput);
+
         javax.swing.GroupLayout ScheduleTabLayout = new javax.swing.GroupLayout(ScheduleTab);
         ScheduleTab.setLayout(ScheduleTabLayout);
         ScheduleTabLayout.setHorizontalGroup(
@@ -197,7 +326,13 @@ public class TourManagerGUI extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(ScheduleTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(ScheduleTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(ScheduleTabLayout.createSequentialGroup()
+                        .addComponent(ScheduleName, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ScheduleLocation))
                     .addComponent(RepeatCheck)
                     .addGroup(ScheduleTabLayout.createSequentialGroup()
                         .addComponent(ScheduleCapacity, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -206,7 +341,6 @@ public class TourManagerGUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(SchedulePrice, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(ScheduleDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 752, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ScheduleName, javax.swing.GroupLayout.PREFERRED_SIZE, 752, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(ScheduleTabLayout.createSequentialGroup()
                         .addGroup(ScheduleTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(ScheduleTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -217,19 +351,22 @@ public class TourManagerGUI extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel6))
                                 .addGroup(ScheduleTabLayout.createSequentialGroup()
-                                    .addComponent(ScheduleCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ScheduleStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
                                     .addComponent(jLabel11)))
                             .addComponent(RepeatUntil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(ScheduleTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CreateTourButton, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ScheduleCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(ScheduleTabLayout.createSequentialGroup()
                                 .addComponent(EndHourMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(EndMinuteMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(EndMinuteMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(ScheduleEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(ScheduleTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(ScheduleClear, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(CreateTourButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE))
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         ScheduleTabLayout.setVerticalGroup(
             ScheduleTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -237,7 +374,9 @@ public class TourManagerGUI extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(ScheduleTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ScheduleName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel14)
+                    .addComponent(ScheduleLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(ScheduleTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ScheduleDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -250,25 +389,31 @@ public class TourManagerGUI extends javax.swing.JFrame {
                     .addComponent(SchedulePrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5)
                 .addGroup(ScheduleTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ScheduleTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4)
-                        .addComponent(jLabel11))
-                    .addComponent(ScheduleCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ScheduleCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(4, 4, 4)
-                .addGroup(ScheduleTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(StartHourMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(StartMinuteMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(EndHourMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(EndMinuteMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(RepeatCheck)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(ScheduleTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CreateTourButton)
-                    .addComponent(RepeatUntil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ScheduleTabLayout.createSequentialGroup()
+                        .addGroup(ScheduleTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel4)
+                            .addComponent(ScheduleStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(ScheduleTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(StartHourMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(StartMinuteMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6)
+                            .addComponent(EndHourMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(EndMinuteMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(RepeatCheck)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(ScheduleTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(ScheduleTabLayout.createSequentialGroup()
+                                .addComponent(CreateTourButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ScheduleClear)
+                                .addGap(41, 41, 41)
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(RepeatUntil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(ScheduleEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -298,7 +443,7 @@ public class TourManagerGUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(EmailLookupField))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(453, Short.MAX_VALUE))
+                .addContainerGap(493, Short.MAX_VALUE))
         );
         ClientLookupTabLayout.setVerticalGroup(
             ClientLookupTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,8 +453,8 @@ public class TourManagerGUI extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(EmailLookupField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(461, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 599, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Client Lookup", ClientLookupTab);
@@ -340,16 +485,17 @@ public class TourManagerGUI extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(ReportTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(ReportTabLayout.createSequentialGroup()
-                        .addGroup(ReportTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addComponent(ReportStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(68, 68, 68)
-                        .addGroup(ReportTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ReportEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10)))
+                        .addComponent(jLabel9)
+                        .addGap(266, 266, 266)
+                        .addComponent(jLabel10)
+                        .addGap(205, 205, 205))
                     .addComponent(ReportButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2))
-                .addContainerGap(126, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ReportTabLayout.createSequentialGroup()
+                        .addComponent(ReportStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ReportEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(228, Short.MAX_VALUE))
         );
         ReportTabLayout.setVerticalGroup(
             ReportTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -366,7 +512,7 @@ public class TourManagerGUI extends javax.swing.JFrame {
                 .addComponent(ReportButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Report", ReportTab);
@@ -375,11 +521,11 @@ public class TourManagerGUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 930, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 671, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
 
         pack();
@@ -389,8 +535,21 @@ public class TourManagerGUI extends javax.swing.JFrame {
         String email = EmailLookupField.getText();
         Client c = TourManager.searchByEmail(email);
         if (c != null) {
-            ClientSearchOutput.setText(c.printClientFull());
+            ClientSearchOutput.setText(c.printClientFull()+"\n");
             TourManager.CurrentClient = c;
+            int i, j;
+            Tour t;
+            for (i = 0; i < TourManager.BookingList.size(); i++) {
+                if (TourManager.BookingList.get(i).getClient().isEqual(c)) {
+                    t = TourManager.BookingList.get(i).getTour();
+                    for (j = 0; j < TourManager.TourList.size(); j++) {
+                        if (TourManager.TourList.get(j).equals(t)) {
+                            ClientSearchOutput.append("Tour #" + (j+1));
+                            ClientSearchOutput.append(t.printTour() + "\n");
+                        }
+                    }
+                }
+            }   
         } else {
             ClientSearchOutput.setText("Email not found");
         }
@@ -398,7 +557,7 @@ public class TourManagerGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_EmailLookupFieldActionPerformed
 
     private void ScheduleNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ScheduleNameActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_ScheduleNameActionPerformed
 
     private void CreateTourButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateTourButtonActionPerformed
@@ -406,17 +565,18 @@ public class TourManagerGUI extends javax.swing.JFrame {
         String desc = ScheduleDescription.getText();
         int cap = Integer.parseInt(ScheduleCapacity.getText());
         double price = Double.parseDouble(SchedulePrice.getText());
+        String loc = ScheduleLocation.getText();
 
-        GregorianCalendar start = (GregorianCalendar)ScheduleCalendar.getCalendar();
-        GregorianCalendar end = (GregorianCalendar)ScheduleCalendar.getCalendar();
-        start.set(GregorianCalendar.HOUR, (Integer)StartHourMenu.getSelectedItem());
-        start.set(GregorianCalendar.MINUTE, (Integer)StartMinuteMenu.getSelectedItem());
-        end.set(GregorianCalendar.HOUR, (Integer)EndHourMenu.getSelectedItem());
-        end.set(GregorianCalendar.MINUTE, (Integer)EndMinuteMenu.getSelectedItem());
+        GregorianCalendar start = (GregorianCalendar)ScheduleStart.getCalendar();
+        GregorianCalendar end = (GregorianCalendar)ScheduleEnd.getCalendar();
+        start.set(GregorianCalendar.HOUR, Integer.parseInt((String)StartHourMenu.getSelectedItem()));
+        start.set(GregorianCalendar.MINUTE, Integer.parseInt((String)StartMinuteMenu.getSelectedItem()));
+        end.set(GregorianCalendar.HOUR, Integer.parseInt((String)EndHourMenu.getSelectedItem()));
+        end.set(GregorianCalendar.MINUTE, Integer.parseInt((String)EndMinuteMenu.getSelectedItem()));
         if (start.getTimeInMillis() > end.getTimeInMillis()) {
             
         } else {
-        TourManager.addTour(name, desc, price, start, end, cap);
+        TourManager.addTour(name, desc, loc, price, start, end, cap);
             if (RepeatCheck.isSelected()) {
                 GregorianCalendar until = (GregorianCalendar)RepeatUntil.getCalendar();
                 until.set(GregorianCalendar.HOUR, 23);
@@ -425,31 +585,117 @@ public class TourManagerGUI extends javax.swing.JFrame {
                     start.add(GregorianCalendar.DAY_OF_MONTH, 7);
                     end.add(GregorianCalendar.DAY_OF_MONTH, 7);
                 
-                    TourManager.addTour(name, desc, price, start, end, cap);
+                    ScheduleOutput.setText(TourManager.addTour(name, desc, loc, price, start, end, cap));
                 }
             }
         }       
     }//GEN-LAST:event_CreateTourButtonActionPerformed
 
     private void RepeatCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RepeatCheckActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_RepeatCheckActionPerformed
 
     private void ReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportButtonActionPerformed
         ReportOutput.setText("");
 
-        GregorianCalendar start = (GregorianCalendar)ReportStart.getCalendar();
+        GregorianCalendar start = (GregorianCalendar)ReportEnd.getCalendar();
         GregorianCalendar end = (GregorianCalendar)ReportEnd.getCalendar();
         end.set(GregorianCalendar.HOUR, 23);
         end.set(GregorianCalendar.MINUTE, 59);
 
         ReportOutput.append("Total revenue over selected period: " + TourManager.displayRevenue(start, end) + "\n");
-        TourManager.displayPastBookings(start, end, ReportOutput);
+        ReportOutput.append(TourManager.displayPastBookings(start, end));
     }//GEN-LAST:event_ReportButtonActionPerformed
 
     private void BookingEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookingEmailActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_BookingEmailActionPerformed
+
+    private void BookingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookingButtonActionPerformed
+        String email = BookingEmail.getText();
+        int index;
+        try {
+            index = Integer.parseInt(TourNumber.getText()) - 1;
+        } catch (NumberFormatException nfe) {
+            index = TourManager.TourList.size() + 1;
+        }
+        if (index < TourManager.TourList.size()) {
+            TourManager.CurrentTour = TourManager.TourList.get(index);
+            Client c = TourManager.searchByEmail(email);
+            if (c == null) {
+                //Open MakeClient window
+                BookOutputPane.setText("");
+                MakeClient mc = new MakeClient();
+                mc.setVisible(true);
+            } else {
+                TourManager.CurrentClient = c;
+                if (TourManager.addBooking(TourManager.CurrentTour, TourManager.CurrentClient) == null) {
+                    BookOutputPane.setText("Error: this client has already booked this tour.");
+                } else {
+                    BookOutputPane.setText("Booking Successful");
+                }
+            }
+        } else {
+            BookOutputPane.setText("Error: tour does not exist.");
+        }
+    }//GEN-LAST:event_BookingButtonActionPerformed
+
+    private void ListAvailableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListAvailableActionPerformed
+        BookingTourList.setText(TourManager.printAvailableTours());
+    }//GEN-LAST:event_ListAvailableActionPerformed
+
+    private void ListFutureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListFutureActionPerformed
+        BookingTourList.setText(TourManager.printFutureTours());
+    }//GEN-LAST:event_ListFutureActionPerformed
+
+    private void ListAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListAllActionPerformed
+        BookingTourList.setText(TourManager.printAllTours());
+    }//GEN-LAST:event_ListAllActionPerformed
+
+    private void CancelTourButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelTourButtonActionPerformed
+        Tour tour = TourManager.TourList.get(Integer.parseInt(TourNumber.getText()) - 1); 
+        BookOutputPane.setText(TourManager.cancelTour(tour));
+    }//GEN-LAST:event_CancelTourButtonActionPerformed
+
+    private void CancelBookingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBookingButtonActionPerformed
+        try {
+            int tour = Integer.parseInt(TourNumber.getText());
+            String email = BookingEmail.getText();
+            Client c = TourManager.searchByEmail(email);
+            
+            if (tour < TourManager.TourList.size()) {
+                BookOutputPane.setText(TourManager.cancelBooking(TourManager.TourList.get(tour), c));
+            } else {
+                BookOutputPane.setText("Error: tour does not exist.");
+            }
+        } catch (NumberFormatException nfe) {
+            BookOutputPane.setText("Error: tour does not exist.");
+        }
+    }//GEN-LAST:event_CancelBookingButtonActionPerformed
+
+    private void ScheduleClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ScheduleClearActionPerformed
+        ScheduleName.setText("");
+        ScheduleDescription.setText("");
+        ScheduleLocation.setText("");
+        ScheduleCapacity.setText("");
+        SchedulePrice.setText("");
+        RepeatCheck.setSelected(false);
+    }//GEN-LAST:event_ScheduleClearActionPerformed
+
+    private void AddClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddClientActionPerformed
+        MakeClient mc = new MakeClient();
+        mc.setVisible(true);
+    }//GEN-LAST:event_AddClientActionPerformed
+
+    private void ChangeBookingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangeBookingButtonActionPerformed
+        try {
+            int newtour = Integer.parseInt(TourNumber.getText());
+            int oldtour = Integer.parseInt(OldTourNumber.getText());
+            
+        } catch (NumberFormatException nfe ){
+            BookOutputPane.setText("Error: tour does not exist");
+        }
+    }//GEN-LAST:event_ChangeBookingButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -480,22 +726,32 @@ public class TourManagerGUI extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new TourManagerGUI().setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AddClient;
+    private javax.swing.JTextArea BookOutputPane;
     private javax.swing.JPanel BookTab;
     private javax.swing.JButton BookingButton;
     private javax.swing.JTextField BookingEmail;
     private javax.swing.JTextArea BookingTourList;
+    private javax.swing.JButton CancelBookingButton;
+    private javax.swing.JButton CancelTourButton;
+    private javax.swing.JButton ChangeBookingButton;
     private javax.swing.JPanel ClientLookupTab;
     private javax.swing.JTextArea ClientSearchOutput;
     private javax.swing.JButton CreateTourButton;
     private javax.swing.JTextField EmailLookupField;
     private javax.swing.JComboBox EndHourMenu;
     private javax.swing.JComboBox EndMinuteMenu;
+    private javax.swing.JButton ListAll;
+    private javax.swing.JButton ListAvailable;
+    private javax.swing.JButton ListFuture;
+    private javax.swing.JTextField OldTourNumber;
     private javax.swing.JCheckBox RepeatCheck;
     private com.toedter.calendar.JCalendar RepeatUntil;
     private javax.swing.JButton ReportButton;
@@ -503,12 +759,15 @@ public class TourManagerGUI extends javax.swing.JFrame {
     private javax.swing.JTextArea ReportOutput;
     private com.toedter.calendar.JCalendar ReportStart;
     private javax.swing.JPanel ReportTab;
-    private com.toedter.calendar.JCalendar ScheduleCalendar;
-    private com.toedter.calendar.JCalendar ScheduleCalendar1;
     private javax.swing.JTextField ScheduleCapacity;
+    private javax.swing.JButton ScheduleClear;
     private javax.swing.JTextField ScheduleDescription;
+    private com.toedter.calendar.JCalendar ScheduleEnd;
+    private javax.swing.JTextField ScheduleLocation;
     private javax.swing.JTextField ScheduleName;
+    private javax.swing.JTextArea ScheduleOutput;
     private javax.swing.JTextField SchedulePrice;
+    private com.toedter.calendar.JCalendar ScheduleStart;
     private javax.swing.JPanel ScheduleTab;
     private javax.swing.JComboBox StartHourMenu;
     private javax.swing.JComboBox StartMinuteMenu;
@@ -518,6 +777,8 @@ public class TourManagerGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -529,6 +790,8 @@ public class TourManagerGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
 }
