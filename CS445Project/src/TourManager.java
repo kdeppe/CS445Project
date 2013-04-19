@@ -20,7 +20,7 @@ import javax.swing.*;
 
 public class TourManager 
 {
-    static ArrayList<ArrayList> lists = new ArrayList<ArrayList>(3);
+    static ArrayList<ArrayList> lists = new ArrayList<ArrayList>(0);
     
     static ArrayList<Tour> TourList = new ArrayList<Tour>(0);
     static ArrayList<Client> ClientList = new ArrayList<Client>(0);
@@ -29,18 +29,26 @@ public class TourManager
     static Client CurrentClient;
     static Tour CurrentTour;
     
-    public static void main(String [] args) throws IOException, ClassNotFoundException {        
+    public static void main(String [] args) throws IOException, ClassNotFoundException {
+               
         try {
             FileInputStream fis= new FileInputStream("lists.ser");
             BufferedInputStream bis= new BufferedInputStream(fis);
             ObjectInputStream ois= new ObjectInputStream(bis);
-            TourList = (ArrayList)ois.readObject();
-            ClientList = (ArrayList)ois.readObject();
-            BookingList = (ArrayList)ois.readObject();
+            lists = (ArrayList)ois.readObject();
             ois.close();
         } catch (FileNotFoundException fnfe) {
+            lists.add(TourList);
+            lists.add(ClientList);
+            lists.add(BookingList);
 	} catch (ClassNotFoundException cnfe) {
+            lists.add(TourList);
+            lists.add(ClientList);
+            lists.add(BookingList);
         } catch (IOException ioe) {
+            lists.add(TourList);
+            lists.add(ClientList);
+            lists.add(BookingList);
         }
         
         TourManagerGUI tmg = new TourManagerGUI();
@@ -257,17 +265,6 @@ public class TourManager
             if (TourList.get(i).equals(t)) {
                 TourList.remove(i);
             }
-        }
-        try {
-            FileOutputStream fos = new FileOutputStream("lists.ser");
-            BufferedOutputStream bos= new BufferedOutputStream(fos);
-            ObjectOutputStream oos= new ObjectOutputStream(bos);
-
-            oos.writeObject(TourList);
-            oos.writeObject(ClientList);
-            oos.writeObject(BookingList);
-            oos.close();
-        } catch (IOException ioe) {
         }
         return out;
     }

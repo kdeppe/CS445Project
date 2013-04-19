@@ -121,7 +121,48 @@ public class Tour
     
     public String printTour() {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-        String out = "Tour Name: " + name + "\nLocation: " + location + "\nDescription: " + description + "\nDate: "+ sdf.format(start.getTime()) + "\nTimes: " + start.get(GregorianCalendar.HOUR) + ":" + String.format("%02d",start.get(GregorianCalendar.MINUTE)) +"-" +end.get(GregorianCalendar.HOUR) + ":" + String.format("%02d", end.get(GregorianCalendar.MINUTE)) + "\nCapacity: " + capacity + "\nRemaining: " + this.getRemaining() + "\nPrice: " + String.format("$%.2f", price) + "\n";
+        String ampmStart, ampmEnd;
+        if (start.get(GregorianCalendar.HOUR_OF_DAY) >= 12) {
+            ampmStart = "PM";
+        } else {
+            ampmStart = "AM";
+        }
+        if (end.get(GregorianCalendar.HOUR_OF_DAY) >= 12) {
+            ampmEnd = "PM";
+        } else {
+            ampmEnd = "AM";
+        }
+        String out;
+        int startHour;
+        int endHour;
+        if (start.get(GregorianCalendar.HOUR) == 0) {
+            startHour = 12;
+        } else {
+            startHour = start.get(GregorianCalendar.HOUR);
+        }
+        
+        if (end.get(GregorianCalendar.HOUR) == 0) {
+            endHour = 12;
+        } else {
+            endHour = end.get(GregorianCalendar.HOUR);
+        }
+        if (sdf.format(start.getTime()).equals(sdf.format(end.getTime()))) {
+            out = "Tour Name: " + name + "\nLocation: " + location + "\nDescription: " 
+                    + description + "\nDate: "+ sdf.format(start.getTime()) + "\nTimes: " 
+                    + startHour + ":" + String.format("%02d",start.get(GregorianCalendar.MINUTE)) + " " + ampmStart +"-" 
+                    + endHour + ":" + String.format("%02d", end.get(GregorianCalendar.MINUTE)) 
+                    + " " + ampmEnd + "\nCapacity: " + capacity + "\nRemaining: " + this.getRemaining() 
+                    + "\nPrice: " + String.format("$%.2f", price) + "\n";
+        } else {
+            out = "Tour Name: " + name + "\nLocation: " + location + "\nDescription: " 
+                    + description + "\nDates: "+ sdf.format(start.getTime()) + "-" 
+                    + sdf.format(end.getTime()) + "\nTimes: " + start.get(GregorianCalendar.HOUR) + ":" 
+                    + String.format("%02d",start.get(GregorianCalendar.MINUTE)) + " " 
+                    + ampmStart + "-" +end.get(GregorianCalendar.HOUR) + ":" 
+                    + String.format("%02d", end.get(GregorianCalendar.MINUTE)) + " " 
+                    + ampmEnd + "\nCapacity: " + capacity + "\nRemaining: " + this.getRemaining() 
+                    + "\nPrice: " + String.format("$%.2f", price) + "\n";
+        }
         return out;
     }
     
