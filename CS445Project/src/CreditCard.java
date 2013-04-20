@@ -67,7 +67,7 @@ public class CreditCard implements Serializable
     
     String printCard() {
         String out = "\nCard number: "+cardNumber+"\nSecurity code: "+cardCode
-                +"\nExpiration: "+exp+"\nName on Card: "+NameOnCard+"Billing Address: "+address;
+                +"\nExpiration: "+exp+"\nName on Card: "+NameOnCard+"\nBilling Address: "+address;
         return out;
     }
 }

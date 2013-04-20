@@ -67,7 +67,7 @@ public class MakeClient extends javax.swing.JFrame {
 
         jLabel8.setText("Name On Card:");
 
-        OKButton.setText("OK");
+        OKButton.setText("Create");
         OKButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 OKButtonActionPerformed(evt);
@@ -76,15 +76,18 @@ public class MakeClient extends javax.swing.JFrame {
 
         jLabel9.setText("Email:");
 
-        CancelButton.setText("Cancel");
+        CancelButton.setText("Close");
         CancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CancelButtonActionPerformed(evt);
             }
         });
 
+        ClientCreateOut.setEditable(false);
         ClientCreateOut.setColumns(20);
+        ClientCreateOut.setLineWrap(true);
         ClientCreateOut.setRows(5);
+        ClientCreateOut.setWrapStyleWord(true);
         jScrollPane1.setViewportView(ClientCreateOut);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -205,19 +208,18 @@ public class MakeClient extends javax.swing.JFrame {
             String exp = ExpField.getText();
             String noc = NameOnCardField.getText();
             String add = AddressField.getText();
-        
-            CreditCard c = new CreditCard(cn, cc, exp, noc, add);
-            TourManager.CurrentClient = TourManager.addClient(name, email, phone);
-            TourManager.CurrentClient.setCard(c);
             
-            ClientCreateOut.setText("Client added.");
-            Thread.sleep(1000);
-        
-            this.dispose();
+            if (!name.equals("") && !email.equals("") && !phone.equals("") && !exp.equals("") && !noc.equals("") && !add.equals("")) {
+                CreditCard c = new CreditCard(cn, cc, exp, noc, add);
+                TourManager.CurrentClient = TourManager.addClient(name, email, phone);
+                TourManager.CurrentClient.setCard(c);
+            } else {
+                ClientCreateOut.setText("Error: fill in all fields to create client.");
+            }
+            
+            ClientCreateOut.setText("Client added. Continue booking on the home screen.");
         } catch (NumberFormatException nfe) {
             ClientCreateOut.setText("Error: enter credit card number with no spaces or hyphens, and security code as only digits.");
-        } catch (InterruptedException ie) {
-            
         }
     }//GEN-LAST:event_OKButtonActionPerformed
 

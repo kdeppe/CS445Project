@@ -242,7 +242,14 @@ public class TourManager
     static String displayRevenue(GregorianCalendar start, GregorianCalendar end) {
         double total = 0;
         for (int i = 0; i < TourList.size(); i++) {
-            total = total + TourList.get(i).getPrice()*TourList.get(i).getBookings().size();
+            System.out.println("Tour time: "+ TourList.get(i).getStart().toString());
+            System.out.println("Start: " + start.toString());
+            System.out.println("End: " +  end.toString());
+            System.out.println((TourList.get(i).getStart().getTimeInMillis() < end.getTimeInMillis()) + "\n");
+            if (TourList.get(i).getStart().after(start) && TourList.get(i).getStart().before(end)) {
+                System.out.println(i);
+                total = total + TourList.get(i).getPrice()*TourList.get(i).getBookings().size();
+            }
         }
         String out = String.format("$%.2f", total);
         return out;
