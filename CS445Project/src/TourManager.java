@@ -21,9 +21,9 @@ import javax.swing.*;
 public class TourManager 
 {
     
-    static ArrayList<Tour> TourList;
-    static ArrayList<Client> ClientList;
-    static ArrayList<Booking> BookingList;
+    static ArrayList<Tour> TourList = new ArrayList<Tour>(0);
+    static ArrayList<Client> ClientList = new ArrayList<Client>(0);
+    static ArrayList<Booking> BookingList = new ArrayList<Booking>(0);
     
     static Client CurrentClient;
     static Tour CurrentTour;
@@ -66,8 +66,8 @@ public class TourManager
         tmg.setDefaultCloseOperation(TourManagerGUI.EXIT_ON_CLOSE);        
     }
     
-    static String addTour(String n, String d, String l, double p, GregorianCalendar s, GregorianCalendar e, int cap) {
-        Tour newTour = new Tour(n, d, l, p, s, e, cap);
+    static String addTour(String n, String d, String l, double p, GregorianCalendar s, GregorianCalendar e, int cap, int mincap) {
+        Tour newTour = new Tour(n, d, l, p, s, e, cap, mincap);
         int i;
         boolean overlaps = false;
         for (i=0; i<TourList.size(); i++) {
@@ -179,14 +179,16 @@ public class TourManager
     
     static String cancelBooking(Tour t, Client c) {
         Booking test = new Booking(t, c);
+        double paid = 0;
         for (int i=0; i<BookingList.size(); i++) {
             if (BookingList.get(i).isEqual(test)) {
+                paid = BookingList.get(i).getPrice();
                 BookingList.remove(i);
             }
         }
         t.cancelBooking(c);
         c.cancelBooking(t);
-        String out = ("Refund amount: "+String.format("$%.2f", t.getPrice()));
+        String out = ("Refund amount: "+String.format("$%.2f", paid));
         try {
             FileOutputStream fos = new FileOutputStream("lists.ser");
             BufferedOutputStream bos= new BufferedOutputStream(fos);
@@ -262,17 +264,11 @@ public class TourManager
     static String cancelTour(Tour t) {
         String out = "Email list: \n";
         int i, j;
-        System.out.println("Emails loop");
-        System.out.println("Size: " + t.getBookings().size());
         for (i=0; i<t.getBookings().size(); i++) {
-            System.out.println(i);
             out = out + t.getBookings().get(i).getClient().getEmail() + "\n";
         }
         out = out + "\n";
-        System.out.println("Cancel loop");
-        System.out.println("Size: " + t.getBookings().size());
         for (j = t.getBookings().size() - 1; j >= 0; j--) {
-            System.out.println(j);
             out = out + t.getBookings().get(j).getClient().getName() + "\n";
             out = out + cancelBooking(t, t.getBookings().get(j).getClient()) + "\n\n";
         }

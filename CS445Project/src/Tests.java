@@ -22,9 +22,9 @@ public class Tests
         GregorianCalendar start, end;
         start = new GregorianCalendar(2013, 5, 15, 9, 0);
         end = new GregorianCalendar(2013, 5, 15, 12, 0);
-        Tour testtour = new Tour("some name", "some description", "some location", 85.0, start, end, 10);
+        Tour testtour = new Tour("some name", "some description", "some location", 85.0, start, end, 10, 3);
         boolean pass = false;
-        if (testtour.getPrice() == 85 && testtour.getStart() == start && testtour.getEnd() == end && testtour.getCapacity() == 10 && testtour.bookings.isEmpty()) {
+        if (testtour.getPrice() == 85 && testtour.getStart() == start && testtour.getEnd() == end && testtour.getCapacity() == 10 && testtour.getMinCapacity() == 3 && testtour.bookings.isEmpty()) {
             pass = true;
         }
         assertTrue(pass);
@@ -47,7 +47,7 @@ public class Tests
         GregorianCalendar start, end;
         start = new GregorianCalendar(2013, 5, 15, 9, 0);
         end = new GregorianCalendar(2013, 5, 15, 12, 0);
-        Tour testT = new Tour("some name", "some description", "some location", 85.0, start, end, 10);
+        Tour testT = new Tour("some name", "some description", "some location", 85.0, start, end, 10, 3);
         Client testC = new Client("Bob Smith", "bsmith@gmail.com", "312-555-1234");
         Booking testB = new Booking(testT, testC);
         boolean pass = false;
@@ -64,7 +64,7 @@ public class Tests
         GregorianCalendar start, end;
         start = new GregorianCalendar(2013, 5, 15, 9, 0);
         end = new GregorianCalendar(2013, 5, 15, 12, 0);
-        Tour testT = new Tour("some name", "some description", "some location", 85.0, start, end, 10);
+        Tour testT = new Tour("some name", "some description", "some location", 85.0, start, end, 10, 3);
         
         Client testC = new Client("Bob Smith", "bsmith@gmail.com", "312-555-1234");
         Booking testB = TourManager.addBooking(testT, testC);
@@ -91,7 +91,7 @@ public class Tests
         GregorianCalendar start, end;
         start = new GregorianCalendar(2013, 5, 15, 9, 0);
         end = new GregorianCalendar(2013, 5, 15, 12, 0);
-        Tour testT = new Tour("some name", "some description", "some location", 85.0, start, end, 10);
+        Tour testT = new Tour("some name", "some description", "some location", 85.0, start, end, 10, 3);
         
         Client testC = new Client("Bob Smith", "bsmith@gmail.com", "312-555-1234");
         Booking testB = TourManager.addBooking(testT, testC);
@@ -113,8 +113,8 @@ public class Tests
         end1 = new GregorianCalendar(2013, 5, 15, 12, 0);
         start2 = new GregorianCalendar(2013, 5, 16, 9, 0);
         end2 = new GregorianCalendar(2013, 5, 16, 12, 0);
-        Tour testT1 = new Tour("some name", "some description", "some location", 85.0, start1, end1, 10);
-        Tour testT2 = new Tour("different name", "different description", "different location", 95.0, start2, end2, 10);
+        Tour testT1 = new Tour("some name", "some description", "some location", 85.0, start1, end1, 10, 3);
+        Tour testT2 = new Tour("different name", "different description", "different location", 95.0, start2, end2, 10, 3);
         
         Client testC = new Client("Bob Smith", "bsmith@gmail.com", "312-555-1234");
         Booking testB = TourManager.addBooking(testT1, testC);
@@ -133,7 +133,7 @@ public class Tests
         GregorianCalendar start, end;
         start = new GregorianCalendar(2013, 5, 15, 9, 0);
         end = new GregorianCalendar(2013, 5, 15, 12, 0);
-        Tour testT = new Tour("some name", "some description", "some location", 85.0, start, end, 10);
+        Tour testT = new Tour("some name", "some description", "some location", 85.0, start, end, 10, 3);
         
         Client testC = TourManager.addClient("Bob Smith", "bsmith@gmail.com", "312-555-1234");
         Booking testB = TourManager.addBooking(testT, testC);
@@ -152,7 +152,7 @@ public class Tests
         GregorianCalendar start, end;
         start = new GregorianCalendar(2013, 5, 15, 9, 0);
         end = new GregorianCalendar(2013, 5, 15, 12, 0);
-        Tour testT = new Tour("some name", "some description", "some location", 85.0, start, end, 10);
+        Tour testT = new Tour("some name", "some description", "some location", 85.0, start, end, 10, 3);
         
         Client testC = new Client("Bob Smith", "bsmith@gmail.com", "312-555-1234");
         Booking testB = TourManager.addBooking(testT, testC);
@@ -170,7 +170,7 @@ public class Tests
         GregorianCalendar start, end;
         start = new GregorianCalendar(2013, 5, 15, 9, 0);
         end = new GregorianCalendar(2013, 5, 15, 12, 0);
-        Tour testtour = new Tour("some name", "some description", "some location", 85.0, start, end, 10);
+        Tour testtour = new Tour("some name", "some description", "some location", 85.0, start, end, 10, 3);
         testtour.setPrice(90.0);
         boolean pass = false;
         if (testtour.getPrice() == 90) {
@@ -187,7 +187,7 @@ public class Tests
         start2 = new GregorianCalendar(2013, 5, 15, 9, 30);
         end1 = new GregorianCalendar(2013, 5, 15, 12, 0);
         end2 = new GregorianCalendar(2013, 5, 15, 12, 30);
-        Tour testtour = new Tour("some name", "some description", "some location", 85.0, start1, end1, 10);
+        Tour testtour = new Tour("some name", "some description", "some location", 85.0, start1, end1, 10, 3);
         testtour.setStart(start2);
         testtour.setEnd(end2);
         boolean pass = false;
@@ -203,7 +203,7 @@ public class Tests
         GregorianCalendar start, end;
         start = new GregorianCalendar(2013, 5, 15, 9, 0);
         end = new GregorianCalendar(2013, 5, 15, 12, 0);
-        Tour testtour = new Tour("some name", "some description", "some location", 85.0, start, end, 10);
+        Tour testtour = new Tour("some name", "some description", "some location", 85.0, start, end, 10, 3);
         
         testtour.setCapacity(12);
         boolean pass = false;
@@ -219,7 +219,7 @@ public class Tests
         GregorianCalendar start, end;
         start = new GregorianCalendar(2013, 5, 15, 9, 0);
         end = new GregorianCalendar(2013, 5, 15, 12, 0);
-        Tour testtour = new Tour("some name", "some description", "some location", 85.0, start, end, 10);
+        Tour testtour = new Tour("some name", "some description", "some location", 85.0, start, end, 10, 3);
         
         Client testC = new Client("Bob Smith", "bsmith@gmail.com", "312-555-1234");
         Booking testB = TourManager.addBooking(testtour, testC);
@@ -238,7 +238,7 @@ public class Tests
         GregorianCalendar start, end;
         start = new GregorianCalendar(2013, 5, 15, 9, 0);
         end = new GregorianCalendar(2013, 5, 15, 12, 0);
-        Tour testT = new Tour("some name", "some description", "some location", 85.0, start, end, 1);
+        Tour testT = new Tour("some name", "some description", "some location", 85.0, start, end, 1, 3);
         
         Client testC1 = new Client("Bob Smith", "bsmith@gmail.com", "312-555-1234");
         Client testC2 = new Client("John Davis", "jdavis@hotmail.com", "630-555-4321");

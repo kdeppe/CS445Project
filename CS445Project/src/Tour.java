@@ -20,11 +20,12 @@ public class Tour implements Serializable
     double price;
     GregorianCalendar start;
     GregorianCalendar end;
-    int capacity;
+    int maxCapacity;
+    int minCapacity;
     ArrayList<Booking> bookings;
     
     //Constructor
-    public Tour(String n, String d, String l, double p, GregorianCalendar st, GregorianCalendar e, int cap)
+    public Tour(String n, String d, String l, double p, GregorianCalendar st, GregorianCalendar e, int maxcap, int mincap)
     {
         name = n;
         description = d;
@@ -32,7 +33,8 @@ public class Tour implements Serializable
         price = p;
         start = st;
         end = e;
-        capacity = cap;
+        maxCapacity = maxcap;
+        minCapacity = mincap;
         bookings = new ArrayList<Booking>(0);
     }
     //Accessors
@@ -49,7 +51,11 @@ public class Tour implements Serializable
     }
     
     int getCapacity() {
-        return capacity;
+        return maxCapacity;
+    }
+    
+    int getMinCapacity() {
+        return minCapacity;
     }
     
     ArrayList<Booking> getBookings() {
@@ -57,7 +63,7 @@ public class Tour implements Serializable
     }
     
     int getRemaining() {
-        return capacity-bookings.size();
+        return maxCapacity-bookings.size();
     }
     
     String getName() {
@@ -99,7 +105,11 @@ public class Tour implements Serializable
     }
     
     void setCapacity(int cap) {
-        capacity = cap;
+        maxCapacity = cap;
+    }
+    
+    void setMinCapacity(int cap) {
+        minCapacity = cap;
     }
     
     //Actions    
@@ -152,8 +162,8 @@ public class Tour implements Serializable
                     + description + "\nDate: "+ sdf.format(start.getTime()) + "\nTimes: " 
                     + startHour + ":" + String.format("%02d",start.get(GregorianCalendar.MINUTE)) + " " + ampmStart +"-" 
                     + endHour + ":" + String.format("%02d", end.get(GregorianCalendar.MINUTE)) 
-                    + " " + ampmEnd + "\nCapacity: " + capacity + "\nRemaining: " + this.getRemaining() 
-                    + "\nPrice: " + String.format("$%.2f", price) + "\n";
+                    + " " + ampmEnd + "\nMaximum Capacity: " + maxCapacity + "\nMinimum capacity: " + minCapacity 
+                    + "\nRemaining: " + this.getRemaining() + "\nPrice: " + String.format("$%.2f", price) + "\n";
         } else {
             out = "Tour Name: " + name + "\nLocation: " + location + "\nDescription: " 
                     + description + "\nDates: "+ sdf.format(start.getTime()) + "-" 
@@ -161,7 +171,7 @@ public class Tour implements Serializable
                     + String.format("%02d",start.get(GregorianCalendar.MINUTE)) + " " 
                     + ampmStart + "-" +end.get(GregorianCalendar.HOUR) + ":" 
                     + String.format("%02d", end.get(GregorianCalendar.MINUTE)) + " " 
-                    + ampmEnd + "\nCapacity: " + capacity + "\nRemaining: " + this.getRemaining() 
+                    + ampmEnd + "\nMaximum Capacity: " + maxCapacity + "\nMinimum capacity: " + minCapacity + "\nRemaining: " + this.getRemaining() 
                     + "\nPrice: " + String.format("$%.2f", price) + "\n";
         }
         return out;

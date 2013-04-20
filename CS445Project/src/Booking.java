@@ -13,11 +13,13 @@ public class Booking implements Serializable
 {
     Tour tour;
     Client client;
+    double pricePaid;
     
     //Constructor
     public Booking(Tour t, Client c) {
         tour = t;
         client = c;
+        pricePaid = t.getPrice();
     }
     
     //Accessors
@@ -27,6 +29,10 @@ public class Booking implements Serializable
     
     Client getClient() {
         return client;
+    }
+    
+    double getPrice() {
+        return pricePaid;
     }
     
     //Mutators
