@@ -198,14 +198,14 @@ public class Tour implements Serializable
             out = "Tour Name: " + name + "\nDate: "+ sdf.format(start.getTime()) + "\nTimes: " 
                     + startHour + ":" + String.format("%02d",start.get(GregorianCalendar.MINUTE)) + " " + ampmStart +"-" 
                     + endHour + ":" + String.format("%02d", end.get(GregorianCalendar.MINUTE)) 
-                    + " " + ampmEnd + "\nPrice: " + price + "\n";
+                    + " " + ampmEnd + "\nPrice: " + String.format("$%.2f", price) + "\n";
         } else {
             out = "Tour Name: " + name + "\nDates: "+ sdf.format(start.getTime()) + "-" 
                     + sdf.format(end.getTime()) + "\nTimes: " + start.get(GregorianCalendar.HOUR) + ":" 
                     + String.format("%02d",start.get(GregorianCalendar.MINUTE)) + " " 
                     + ampmStart + "-" +end.get(GregorianCalendar.HOUR) + ":" 
                     + String.format("%02d", end.get(GregorianCalendar.MINUTE)) + " " 
-                    + ampmEnd + "\nPrice: " + price + "\n";
+                    + ampmEnd + "\nPrice: " + String.format("$%.2f", price) + "\n";
         }
         return out;
     }

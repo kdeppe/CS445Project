@@ -40,7 +40,7 @@ public class Booking implements Serializable
     
     //Actions
     boolean isEqual(Booking b) {
-        if (client.equals(b.getClient()) && tour.equals(b.getTour())) {
+        if (client.isEqual(b.getClient()) && tour.isEqual(b.getTour())) {
             return true;
         }
         return false;

@@ -92,7 +92,7 @@ public class TourManager
             oos.close();
         } catch (IOException ioe) {
         }
-        return "Tour added successfully.";
+        return "Tour added successfully.\n";
     }
     
     static Client addClient(String n, String e, String p) {
@@ -228,7 +228,7 @@ public class TourManager
     }
     
     static String displayPastBookings(GregorianCalendar start, GregorianCalendar end) {
-        String out = "";
+        String out = "Bookings from selected time period: \n";
         for (int i = 0; i < BookingList.size(); i++) {
             if (BookingList.get(i).getTour().getStart().after(start) && BookingList.get(i).getTour().getStart().before(end)) {
                 out = out + (BookingList.get(i).getClient().printClientShort());
@@ -261,15 +261,20 @@ public class TourManager
 
     static String cancelTour(Tour t) {
         String out = "Email list: \n";
-        int i;
+        int i, j;
+        System.out.println("Emails loop");
+        System.out.println("Size: " + t.getBookings().size());
         for (i=0; i<t.getBookings().size(); i++) {
+            System.out.println(i);
             out = out + t.getBookings().get(i).getClient().getEmail() + "\n";
         }
-        for (i=0; i<BookingList.size(); i++) {
-            if (BookingList.get(i).getTour().isEqual(t)) {
-                out = out + BookingList.get(i).getClient().getName() + "\n";
-                out = out + cancelBooking(t, BookingList.get(i).getClient()) + "\n\n";
-            }
+        out = out + "\n";
+        System.out.println("Cancel loop");
+        System.out.println("Size: " + t.getBookings().size());
+        for (j = t.getBookings().size() - 1; j >= 0; j--) {
+            System.out.println(j);
+            out = out + t.getBookings().get(j).getClient().getName() + "\n";
+            out = out + cancelBooking(t, t.getBookings().get(j).getClient()) + "\n\n";
         }
         for (i=0; i<TourList.size(); i++) {
             if (TourList.get(i).equals(t)) {
