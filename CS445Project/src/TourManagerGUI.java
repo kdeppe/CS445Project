@@ -693,6 +693,18 @@ public class TourManagerGUI extends javax.swing.JFrame {
                     until.set(GregorianCalendar.HOUR, 23);
                     until.set(GregorianCalendar.MINUTE, 59);
                     while (start.getTimeInMillis() < until.getTimeInMillis()) {
+                        int syear = start.get(GregorianCalendar.YEAR);
+                        int smonth = start.get(GregorianCalendar.MONTH);
+                        int sday = start.get(GregorianCalendar.DAY_OF_MONTH);
+                        int shour = start.get(GregorianCalendar.HOUR_OF_DAY);
+                        int sminute = start.get(GregorianCalendar.MINUTE);
+                        int eyear = end.get(GregorianCalendar.YEAR);
+                        int emonth = end.get(GregorianCalendar.MONTH);
+                        int eday = end.get(GregorianCalendar.DAY_OF_MONTH);
+                        int ehour = end.get(GregorianCalendar.HOUR_OF_DAY);
+                        int eminute = end.get(GregorianCalendar.MINUTE);
+                        start = new GregorianCalendar(syear, smonth, sday, shour, sminute);
+                        end = new GregorianCalendar(eyear, emonth, eday, ehour, eminute);
                         start.add(GregorianCalendar.DAY_OF_MONTH, 7);
                         end.add(GregorianCalendar.DAY_OF_MONTH, 7);
                         
@@ -717,12 +729,12 @@ public class TourManagerGUI extends javax.swing.JFrame {
         } catch (InterruptedException ie) {
             
         }
-        GregorianCalendar start = (GregorianCalendar)ReportEnd.getCalendar();
+        GregorianCalendar start = (GregorianCalendar)ReportStart.getCalendar();
         GregorianCalendar end = (GregorianCalendar)ReportEnd.getCalendar();
         end.set(GregorianCalendar.HOUR, 23);
         end.set(GregorianCalendar.MINUTE, 59);
 
-        ReportOutput.append("Total revenue over selected period: " + TourManager.displayRevenue(start, end) + "\n");
+        ReportOutput.append("Total revenue over selected period: " + TourManager.displayRevenue(start, end) + "\n\n");
         ReportOutput.append(TourManager.displayPastBookings(start, end));
     }//GEN-LAST:event_ReportButtonActionPerformed
 

@@ -167,6 +167,49 @@ public class Tour implements Serializable
         return out;
     }
     
+    public String printTourShort() {
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        String ampmStart, ampmEnd;
+        if (start.get(GregorianCalendar.HOUR_OF_DAY) >= 12) {
+            ampmStart = "PM";
+        } else {
+            ampmStart = "AM";
+        }
+        if (end.get(GregorianCalendar.HOUR_OF_DAY) >= 12) {
+            ampmEnd = "PM";
+        } else {
+            ampmEnd = "AM";
+        }
+        String out;
+        int startHour;
+        int endHour;
+        if (start.get(GregorianCalendar.HOUR) == 0) {
+            startHour = 12;
+        } else {
+            startHour = start.get(GregorianCalendar.HOUR);
+        }
+        
+        if (end.get(GregorianCalendar.HOUR) == 0) {
+            endHour = 12;
+        } else {
+            endHour = end.get(GregorianCalendar.HOUR);
+        }
+        if (sdf.format(start.getTime()).equals(sdf.format(end.getTime()))) {
+            out = "Tour Name: " + name + "\nDate: "+ sdf.format(start.getTime()) + "\nTimes: " 
+                    + startHour + ":" + String.format("%02d",start.get(GregorianCalendar.MINUTE)) + " " + ampmStart +"-" 
+                    + endHour + ":" + String.format("%02d", end.get(GregorianCalendar.MINUTE)) 
+                    + " " + ampmEnd + "\nPrice: " + price + "\n";
+        } else {
+            out = "Tour Name: " + name + "\nDates: "+ sdf.format(start.getTime()) + "-" 
+                    + sdf.format(end.getTime()) + "\nTimes: " + start.get(GregorianCalendar.HOUR) + ":" 
+                    + String.format("%02d",start.get(GregorianCalendar.MINUTE)) + " " 
+                    + ampmStart + "-" +end.get(GregorianCalendar.HOUR) + ":" 
+                    + String.format("%02d", end.get(GregorianCalendar.MINUTE)) + " " 
+                    + ampmEnd + "\nPrice: " + price + "\n";
+        }
+        return out;
+    }
+    
     boolean isOverlap(Tour t) {
         if ((start.getTimeInMillis() > t.getStart().getTimeInMillis() && start.getTimeInMillis() < t.getEnd().getTimeInMillis()) || (end.getTimeInMillis() > t.getStart().getTimeInMillis() && end.getTimeInMillis() < t.getEnd().getTimeInMillis())) {
             return true;
