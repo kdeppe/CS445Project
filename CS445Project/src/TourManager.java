@@ -203,6 +203,32 @@ public class TourManager
         return out;
     }
     
+    static String cancelBookingNoRefund(Tour t, Client c) {
+        Booking test = new Booking(t, c);
+        double paid = 0;
+        for (int i=0; i<BookingList.size(); i++) {
+            if (BookingList.get(i).isEqual(test)) {
+                paid = BookingList.get(i).getPrice();
+                BookingList.remove(i);
+            }
+        }
+        t.cancelBooking(c);
+        c.cancelBookingNoRefund(t);
+        String out = ("Late cancellation: not eligible for refund.");
+        try {
+            FileOutputStream fos = new FileOutputStream("lists.ser");
+            BufferedOutputStream bos= new BufferedOutputStream(fos);
+            ObjectOutputStream oos= new ObjectOutputStream(bos);
+
+            oos.writeObject(TourList);
+            oos.writeObject(ClientList);
+            oos.writeObject(BookingList);
+            oos.close();
+        } catch (IOException ioe) {
+        }
+        return out;
+    }
+    
     static String changeBooking(Booking b, Tour t) {
         double p = b.getTour().getPrice();
         b.getTour().cancelBooking(b.getClient());

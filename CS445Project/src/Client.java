@@ -88,6 +88,15 @@ public class Client implements Serializable
         }
     }
     
+    void cancelBookingNoRefund(Tour t) {
+        int i;
+        for (i=0; i<bookings.size(); i++) {
+            if (bookings.get(i).getTour().equals(t) ) {
+                bookings.remove(i);
+            }
+        }
+    }
+    
     void addTotalSpent(double i) {
         totalSpent += i;
     }

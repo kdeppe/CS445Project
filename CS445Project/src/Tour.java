@@ -167,12 +167,12 @@ public class Tour implements Serializable
         } else {
             out = "Tour Name: " + name + "\nLocation: " + location + "\nDescription: " 
                     + description + "\nDates: "+ sdf.format(start.getTime()) + "-" 
-                    + sdf.format(end.getTime()) + "\nTimes: " + start.get(GregorianCalendar.HOUR) + ":" 
+                    + sdf.format(end.getTime()) + "\nTimes: " + startHour + ":" 
                     + String.format("%02d",start.get(GregorianCalendar.MINUTE)) + " " 
-                    + ampmStart + "-" +end.get(GregorianCalendar.HOUR) + ":" 
-                    + String.format("%02d", end.get(GregorianCalendar.MINUTE)) + " " 
-                    + ampmEnd + "\nMaximum Capacity: " + maxCapacity + "\nMinimum capacity: " + minCapacity + "\nRemaining: " + this.getRemaining() 
-                    + "\nPrice: " + String.format("$%.2f", price) + "\n";
+                    + ampmStart + "-" +endHour + ":" + String.format("%02d", end.get(GregorianCalendar.MINUTE)) 
+                    + " " + ampmEnd + "\nMaximum Capacity: " + maxCapacity + "\nMinimum capacity: " 
+                    + minCapacity + "\nRemaining: " + this.getRemaining() + "\nPrice: " 
+                    + String.format("$%.2f", price) + "\n";
         }
         return out;
     }
