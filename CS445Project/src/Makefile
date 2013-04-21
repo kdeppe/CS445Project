@@ -1,10 +1,9 @@
 JCC = javac
-JR = java
 JUC = javac -cp .:/usr/share/java/junit4.jar
 
 default: Tour Client Booking TourManager
 
-tests: Tests RunTests Test
+tests: Tests RunTests
 
 TourManager: TourManager.java
 	$(JCC) TourManager.java
@@ -24,9 +23,5 @@ Tests: Tests.java
 RunTests: RunTests.java
 	$(JCC) RunTests.java
 
-Test: RunTests.class
-	$(JR) RunTests
-
 clean: 
 	$(RM) *.class
-
