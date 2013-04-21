@@ -122,8 +122,8 @@ public class Tour implements Serializable
     }
     
     void cancelBooking(Client c) {
-        int i;
-        for (i=0; i<bookings.size(); i++) {
+
+        for (int i=0; i<bookings.size(); i++) {
             if (bookings.get(i).getClient().equals(c) ) {
                 bookings.remove(i);
             }
@@ -211,9 +211,9 @@ public class Tour implements Serializable
                     + " " + ampmEnd + "\nPrice: " + String.format("$%.2f", price) + "\n";
         } else {
             out = "Tour Name: " + name + "\nDates: "+ sdf.format(start.getTime()) + "-" 
-                    + sdf.format(end.getTime()) + "\nTimes: " + start.get(GregorianCalendar.HOUR) + ":" 
+                    + sdf.format(end.getTime()) + "\nTimes: " + startHour + ":" 
                     + String.format("%02d",start.get(GregorianCalendar.MINUTE)) + " " 
-                    + ampmStart + "-" +end.get(GregorianCalendar.HOUR) + ":" 
+                    + ampmStart + "-" + endHour + ":" 
                     + String.format("%02d", end.get(GregorianCalendar.MINUTE)) + " " 
                     + ampmEnd + "\nPrice: " + String.format("$%.2f", price) + "\n";
         }
@@ -221,7 +221,7 @@ public class Tour implements Serializable
     }
     
     boolean isOverlap(Tour t) {
-        if ((start.getTimeInMillis() > t.getStart().getTimeInMillis() && start.getTimeInMillis() < t.getEnd().getTimeInMillis()) || (end.getTimeInMillis() > t.getStart().getTimeInMillis() && end.getTimeInMillis() < t.getEnd().getTimeInMillis())) {
+        if ((start.getTimeInMillis() >= t.getStart().getTimeInMillis() && start.getTimeInMillis() <= t.getEnd().getTimeInMillis()) || (end.getTimeInMillis() >= t.getStart().getTimeInMillis() && end.getTimeInMillis() <= t.getEnd().getTimeInMillis())) {
             return true;
         }
         return false;

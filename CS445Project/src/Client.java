@@ -101,12 +101,6 @@ public class Client implements Serializable
         totalSpent += i;
     }
     
-    void listBookings() {
-        for (int i = bookings.size()-1; i > 0; i--) {
-            //Print booking information
-            System.out.println(bookings.get(i).getTour().printTour());
-        }
-    }
     
     boolean isEqual(Client c) {
         if (name.equals(c.name) && email.equals(c.email) && phone.equals(c.phone)) {
@@ -121,9 +115,7 @@ public class Client implements Serializable
     }
     
     String printClientFull() {
-        String out = "Name: " + name + "\nEmail: " + email + "\nPhone: " + phone 
-                + "\nTotal Spent: " + String.format("$%.2f", totalSpent) + "\n" 
-                + card.printCard();
+        String out = "Name: " + name + "\nEmail: " + email + "\nPhone: " + phone + "\nTotal Spent: " + String.format("$%.2f", totalSpent) + "\n" + card.printCard();
         return out;
     }
 }

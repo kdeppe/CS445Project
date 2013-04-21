@@ -95,7 +95,7 @@ public class TourManager
         return "Tour added successfully.\n";
     }
     
-    static Client addClient(String n, String e, String p) {
+    static String addClient(String n, String e, String p) {
         Client newClient = new Client(n, e, p);
         int i;
         boolean exists = false;
@@ -106,8 +106,8 @@ public class TourManager
             }
         }
         if (exists) {
-            System.out.println("Client email already exists, using existing record.");
-            return ClientList.get(i);
+            CurrentClient = ClientList.get(i);
+            return "Client email already exists, using existing record.";
         } else {
             ClientList.add(newClient);
             try {
@@ -121,7 +121,8 @@ public class TourManager
                 oos.close();
             } catch (IOException ioe) {
             }
-            return ClientList.get(ClientList.size()-1);
+            CurrentClient = ClientList.get(ClientList.size()-1);
+            return "Client successfully created.";
         }
     }
     
@@ -131,31 +132,21 @@ public class TourManager
             boolean exists = false;
             int i;
             if (BookingList.size() > 0) {
-                for (i=0; i<BookingList.size(); i++) {
-                    if (BookingList.get(i).isEqual(newBooking)) {
-                        exists = true;
-                        break;
-                    }
-                }
-                if (exists) {
-                    return null;
-                } else {
-                    t.makeBooking(newBooking);
-                    c.makeBooking(newBooking);
-                    BookingList.add(newBooking);
-                    try {
-                        FileOutputStream fos = new FileOutputStream("lists.ser");
-                        BufferedOutputStream bos= new BufferedOutputStream(fos);
-                        ObjectOutputStream oos= new ObjectOutputStream(bos);
+                t.makeBooking(newBooking);
+                c.makeBooking(newBooking);
+                BookingList.add(newBooking);
+                try {
+                    FileOutputStream fos = new FileOutputStream("lists.ser");
+                    BufferedOutputStream bos= new BufferedOutputStream(fos);
+                    ObjectOutputStream oos= new ObjectOutputStream(bos);
 
-                        oos.writeObject(TourList);
-                        oos.writeObject(ClientList);
-                        oos.writeObject(BookingList);
-                        oos.close();
-                    } catch (IOException ioe) {
-                    }
-                    return newBooking;
+                    oos.writeObject(TourList);
+                    oos.writeObject(ClientList);
+                    oos.writeObject(BookingList);
+                    oos.close();
+                } catch (IOException ioe) {
                 }
+                return newBooking;
             } else {
                 t.makeBooking(newBooking);
                 c.makeBooking(newBooking);

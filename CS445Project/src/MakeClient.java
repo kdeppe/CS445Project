@@ -211,13 +211,13 @@ public class MakeClient extends javax.swing.JFrame {
             
             if (!name.equals("") && !email.equals("") && !phone.equals("") && !exp.equals("") && !noc.equals("") && !add.equals("")) {
                 CreditCard c = new CreditCard(cn, cc, exp, noc, add);
-                TourManager.CurrentClient = TourManager.addClient(name, email, phone);
+                ClientCreateOut.setText(TourManager.addClient(name, email, phone));
                 TourManager.CurrentClient.setCard(c);
             } else {
                 ClientCreateOut.setText("Error: fill in all fields to create client.");
             }
             
-            ClientCreateOut.setText("Client added. Continue booking on the home screen.");
+            ClientCreateOut.append("Continue booking on the home screen.");
         } catch (NumberFormatException nfe) {
             ClientCreateOut.setText("Error: enter credit card number with no spaces or hyphens, and security code as only digits.");
         }
