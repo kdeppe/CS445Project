@@ -113,9 +113,6 @@ public class Tour implements Serializable
     }
     
     //Actions    
-    void setPrice(int p) {
-        price = p;
-    }
     
     void makeBooking(Booking b) {
         bookings.add(b);

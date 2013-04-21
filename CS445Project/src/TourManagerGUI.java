@@ -116,13 +116,15 @@ public class TourManagerGUI extends javax.swing.JFrame {
         DefaultMin = new javax.swing.JTextField();
         jScrollPane6 = new javax.swing.JScrollPane();
         PreferencesOut = new javax.swing.JTextArea();
+        SaveAndExitButton5 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
         TourLookupField = new javax.swing.JTextField();
         ListClientsButton1 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
         jScrollPane7 = new javax.swing.JScrollPane();
         TourSearchOutput = new javax.swing.JTextArea();
+        jButton7 = new javax.swing.JButton();
+        SaveAndExitButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -716,6 +718,13 @@ public class TourManagerGUI extends javax.swing.JFrame {
         PreferencesOut.setRows(5);
         jScrollPane6.setViewportView(PreferencesOut);
 
+        SaveAndExitButton5.setText("Save and Exit");
+        SaveAndExitButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaveAndExitButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -744,6 +753,10 @@ public class TourManagerGUI extends javax.swing.JFrame {
                             .addComponent(DefaultMin, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(SaveAndExitButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -767,7 +780,9 @@ public class TourManagerGUI extends javax.swing.JFrame {
                 .addComponent(DefaultMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(305, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 263, Short.MAX_VALUE)
+                .addComponent(SaveAndExitButton5)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Preferences", jPanel1);
@@ -787,18 +802,25 @@ public class TourManagerGUI extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("Edit Client");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-
         TourSearchOutput.setColumns(20);
         TourSearchOutput.setLineWrap(true);
         TourSearchOutput.setRows(5);
         TourSearchOutput.setWrapStyleWord(true);
         jScrollPane7.setViewportView(TourSearchOutput);
+
+        jButton7.setText("Search");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        SaveAndExitButton6.setText("Save and Exit");
+        SaveAndExitButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaveAndExitButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -806,18 +828,19 @@ public class TourManagerGUI extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(jLabel22)
-                            .addGap(18, 18, 18)
-                            .addComponent(TourLookupField))
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel22)
+                        .addGap(18, 18, 18)
+                        .addComponent(TourLookupField))
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(ListClientsButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(559, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 340, Short.MAX_VALUE)
+                .addComponent(SaveAndExitButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -829,10 +852,14 @@ public class TourManagerGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ListClientsButton1)
-                    .addComponent(jButton5))
+                    .addComponent(jButton7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(34, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(SaveAndExitButton6)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Tour Lookup", jPanel2);
@@ -1296,10 +1323,6 @@ public class TourManagerGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_ListClientsButton1ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
-
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         String email = EmailLookupField.getText();
         Client c = TourManager.searchByEmail(email);
@@ -1324,6 +1347,54 @@ public class TourManagerGUI extends javax.swing.JFrame {
         }
         EmailLookupField.selectAll();
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        try {
+            int tournum = Integer.parseInt(TourLookupField.getText()) - 1;
+            if (tournum < TourManager.TourList.size()) {
+                TourSearchOutput.setText(TourManager.TourList.get(tournum).printTour());
+                for (int i = 0; i < TourManager.TourList.get(i).getBookings().size(); i++) {
+                    TourSearchOutput.append("\n"+ TourManager.TourList.get(i).getBookings().get(i).getClient().getName());
+                }
+            } else {
+                TourSearchOutput.setText("Error: tour does not exist.");
+            }
+        } catch (NumberFormatException nfe) {
+            TourSearchOutput.setText("Error: enter tour number as an integer.");
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void SaveAndExitButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveAndExitButton5ActionPerformed
+    try {
+            FileOutputStream fos = new FileOutputStream("lists.ser");
+            BufferedOutputStream bos= new BufferedOutputStream(fos);
+            ObjectOutputStream oos= new ObjectOutputStream(bos);
+
+            oos.writeObject(TourManager.TourList);
+            oos.writeObject(TourManager.ClientList);
+            oos.writeObject(TourManager.BookingList);
+            oos.close();
+        } catch (IOException ioe) {
+        }
+        
+        this.dispose();
+    }//GEN-LAST:event_SaveAndExitButton5ActionPerformed
+
+    private void SaveAndExitButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveAndExitButton6ActionPerformed
+try {
+            FileOutputStream fos = new FileOutputStream("lists.ser");
+            BufferedOutputStream bos= new BufferedOutputStream(fos);
+            ObjectOutputStream oos= new ObjectOutputStream(bos);
+
+            oos.writeObject(TourManager.TourList);
+            oos.writeObject(TourManager.ClientList);
+            oos.writeObject(TourManager.BookingList);
+            oos.close();
+        } catch (IOException ioe) {
+        }
+        
+        this.dispose();
+    }//GEN-LAST:event_SaveAndExitButton6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1400,6 +1471,8 @@ public class TourManagerGUI extends javax.swing.JFrame {
     private javax.swing.JButton SaveAndExitButton2;
     private javax.swing.JButton SaveAndExitButton3;
     private javax.swing.JButton SaveAndExitButton4;
+    private javax.swing.JButton SaveAndExitButton5;
+    private javax.swing.JButton SaveAndExitButton6;
     private javax.swing.JButton ScheduleClear;
     private javax.swing.JTextField ScheduleDescription;
     private com.toedter.calendar.JCalendar ScheduleEnd;
@@ -1420,8 +1493,8 @@ public class TourManagerGUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
